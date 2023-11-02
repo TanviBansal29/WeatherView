@@ -1,0 +1,26 @@
+MENU_PROMPTS : | 
+  Press:
+      1. Login
+      2. SignUp
+  Enter your choice:
+ 
+
+ADMIN_PROMPTS : |
+  1. View data by user
+  2. View data by place
+
+  Enter your choice: 
+
+
+USER_PROMPTS : |
+  1. View by place
+  2. View by coordinates
+
+  Enter your choice:
+
+
+USER_VIEW_PROMPTS : |
+  1. View tempearture
+  2. View humidity
+  3. View wind speed
+  4. View 

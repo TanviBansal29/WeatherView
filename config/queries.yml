@@ -1,0 +1,18 @@
+QUERY_TO_CREATE_USERS_TABLE : |
+                    CREATE TABLE IF NOT EXISTS users(
+                    user_id TEXT,
+                    username TEXT,
+                    password TEXT,
+                    city TEXT,
+                    zipcode INTEGER,
+                    role TEXT DEFAULT "user",
+                    PRIMARY KEY(user_id)
+                    )
+
+QUERY_TO_VERIFY_USERNAME : SELECT * FROM users WHERE username = ?
+
+QUERY_TO_VERIFY_USER : SELECT * FROM users WHERE username = ? AND password = ?
+
+QUERY_TO_CREATE_USER : INSERT INTO users (user_id, username, password, city, zipcode) VALUES (?, ?, ?, ?, ?)
+
+QUERY_TO_FETCH_ROLE : SELECT * FROM users WHERE username = ? AND password = ?
