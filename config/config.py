@@ -35,6 +35,7 @@ class Config:
             cls.MENU_PROMPTS = data['MENU_PROMPTS']   
             cls.USER_PROMPTS = data['USER_PROMPTS']
             cls.ADMIN_PROMPTS = data['ADMIN_PROMPTS']
+            cls.USER_VIEW_PROMPTS = data['USER_VIEW_PROMPTS']
             
 
 

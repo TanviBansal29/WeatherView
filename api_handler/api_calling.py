@@ -1,6 +1,7 @@
 import requests
 import os
 from dotenv import load_dotenv
+from utils.pretty_print import get_table
 
 load_dotenv()
 # city_name = "Noida"
@@ -16,8 +17,6 @@ class ApiCalling:
 
         querystring = query_data
         response = requests.get(self.url, headers=self.headers, params=querystring)
-        print(response.json())
-
-
-obj1 = ApiCalling()
-obj1.get_data_by_city({"city": "Varanasi"})        
+        # pprint(response.json())     
+        data = response.json()
+        print(get_table(data))

@@ -2,8 +2,6 @@ from config.config import Config
 from pwinput import pwinput
 from db.helper_functions import verify_username
 from db.helper_functions import create_user
-from db.helper_functions import verify_user
-from db.helper_functions import fetch_role
 from authentication import Authentication
 
 # utils -> input validations, regex, logs

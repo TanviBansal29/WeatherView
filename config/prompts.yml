@@ -20,7 +20,7 @@ USER_PROMPTS : |
 
 
 USER_VIEW_PROMPTS : |
-  1. View tempearture
-  2. View humidity
-  3. View wind speed
-  4. View 
+  1. Get Weather Info
+  2. Get Weather forecast 
+
+  Enter your choice:
