@@ -8,7 +8,7 @@ ENTER_CITY : "Enter your city: "
 
 ENTER_ZIPCODE : "Enter zipcode: "
 
-DATABASE_NAME : 'data.db'
+DATABASE_NAME : 'C:\Users\tbansal\OneDrive - WatchGuard Technologies Inc\Documents\Weather_App\db\data.db'
 
 LOGIN_ADMIN : "LOGGED IN AS ADMIN...\n"
 
@@ -19,3 +19,17 @@ INVALID_INPUT : "INVALID INPUT. PLEASE TRY AGAIN...\n"
 USERNAME_ERROR : "USERNAME ALREADY TAKEN. PLEASE ENTER NEW USERNAME...\n"
 
 INVALID_CREDENTIALS : "INVALID CREDENTIALS. PLEASE TRY AGAIN!\n"
+
+LATITUDE : "Enter latitutde: "
+
+LONGITUDE : "Enter longitude: "
+
+NO_DATA : "No data exists..\n"
+
+#####from here add to config
+
+ENTER_CITYNAME : "Enter city name: "
+
+ENTER_DAYS : "Enter number of days: "
+
+ENTER_USERID : "Enter user_id: "

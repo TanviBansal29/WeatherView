@@ -9,6 +9,17 @@ QUERY_TO_CREATE_USERS_TABLE : |
                     PRIMARY KEY(user_id)
                     )
 
+QUERY_TO_CREATE_SEARCH_HISTORY_TABLE : |
+                    CREATE TABLE IF NOT EXISTS search_history (
+                    s_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    user_id TEXT,
+                    date_time TEXT,
+                    city TEXT,
+                    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+                    )
+
+QUERY_TO_INSERT_SEARCH_HISTORY : INSERT INTO search_history (user_id, date_time, city) VALUES (? ,? ,?)
+
 QUERY_TO_VERIFY_USERNAME : SELECT * FROM users WHERE username = ?
 
 QUERY_TO_VERIFY_USER : SELECT * FROM users WHERE username = ? AND password = ?
@@ -16,3 +27,14 @@ QUERY_TO_VERIFY_USER : SELECT * FROM users WHERE username = ? AND password = ?
 QUERY_TO_CREATE_USER : INSERT INTO users (user_id, username, password, city, zipcode) VALUES (?, ?, ?, ?, ?)
 
 QUERY_TO_FETCH_ROLE : SELECT * FROM users WHERE username = ? AND password = ?
+
+QUERY_TO_ENALE_FOREIGN_KEY : PRAGMA foreign_keys = 1
+
+QUERY_TO_VIEW_USER : SELECT username, city, zipcode FROM users WHERE username = ?
+
+QUERY_TO_VIEW_USER_BY_PLACE : SELECT user_id, username, city, zipcode FROM users WHERE city = ?
+
+QUERY_TO_VIEW_HISTORY : SELECT date_time, city FROM search_history WHERE user_id = ?
+
+QUERY_TO_FETCH_ALL_USERS : SELECT user_id, username, city, zipcode from users 
+

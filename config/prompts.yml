@@ -8,6 +8,7 @@ MENU_PROMPTS : |
 ADMIN_PROMPTS : |
   1. View data by user
   2. View data by place
+  3. View user history
 
   Enter your choice: 
 
@@ -22,5 +23,6 @@ USER_PROMPTS : |
 USER_VIEW_PROMPTS : |
   1. Get Weather Info
   2. Get Weather forecast 
+  3. View Search history
 
   Enter your choice:

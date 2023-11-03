@@ -17,6 +17,13 @@ class Config:
             cls.LOGIN_USER = data['LOGIN_USER']
             cls.USERNAME_ERROR = data['USERNAME_ERROR']
             cls.INVALID_CREDENTIALS = data['INVALID_CREDENTIALS']
+            cls.LATITUDE = data['LATITUDE']
+            cls.LONGITUDE = data['LONGITUDE']
+            cls.NO_DATA = data['NO_DATA']
+            cls.ENTER_CITYNAME = data['ENTER_CITYNAME']
+            cls.ENTER_DAYS = data['ENTER_DAYS']
+            cls.ENTER_USERID = data['ENTER_USERID']
+
 
     @classmethod
     def load_queries(cls):
@@ -27,6 +34,12 @@ class Config:
             cls.QUERY_TO_CREATE_USER = data['QUERY_TO_CREATE_USER']
             cls.QUERY_TO_VERIFY_USER = data['QUERY_TO_VERIFY_USER']
             cls.QUERY_TO_FETCH_ROLE = data['QUERY_TO_FETCH_ROLE']
+            cls.QUERY_TO_INSERT_SEARCH_HISTORY = data['QUERY_TO_INSERT_SEARCH_HISTORY']
+            cls.QUERY_TO_CREATE_SEARCH_HISTORY_TABLE = data['QUERY_TO_CREATE_SEARCH_HISTORY_TABLE']
+            cls.QUERY_TO_VIEW_USER = data['QUERY_TO_VIEW_USER']
+            cls.QUERY_TO_VIEW_USER_BY_PLACE = data['QUERY_TO_VIEW_USER_BY_PLACE']
+            cls.QUERY_TO_VIEW_HISTORY = data['QUERY_TO_VIEW_HISTORY']
+            cls.QUERY_TO_FETCH_ALL_USERS = data['QUERY_TO_FETCH_ALL_USERS']
 
     @classmethod
     def load_prompts(cls):
