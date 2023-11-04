@@ -26,10 +26,22 @@ LONGITUDE : "Enter longitude: "
 
 NO_DATA : "No data exists..\n"
 
-#####from here add to config
-
 ENTER_CITYNAME : "Enter city name: "
 
 ENTER_DAYS : "Enter number of days: "
 
 ENTER_USERID : "Enter user_id: "
+
+FORMAT_DATE_TIME : "%d/%m/%Y %H:%M:%S"
+
+ADMIN : 'admin'
+
+LAT : "lat"
+
+LON : "lon"
+
+CITY : "q"
+
+DAYS : "days"
+
+QUIT : 'q'

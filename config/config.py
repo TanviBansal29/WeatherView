@@ -23,6 +23,13 @@ class Config:
             cls.ENTER_CITYNAME = data['ENTER_CITYNAME']
             cls.ENTER_DAYS = data['ENTER_DAYS']
             cls.ENTER_USERID = data['ENTER_USERID']
+            cls.FORMAT_DATE_TIME = data['FORMAT_DATE_TIME']
+            cls.ADMIN = data['ADMIN']
+            cls.LAT = data['LAT']
+            cls.LON = data['LON']
+            cls.CITY = data['CITY']
+            cls.DAYS = data['DAYS']
+            cls.QUIT = data['QUIT']
 
 
     @classmethod

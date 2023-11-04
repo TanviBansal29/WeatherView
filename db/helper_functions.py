@@ -4,7 +4,6 @@ from tabulate import tabulate
 import shortuuid
 
 
-
 def create_user_table():
     with DatabaseConnection(Config.DATABASE_NAME) as connection:
         cursor = connection.cursor()

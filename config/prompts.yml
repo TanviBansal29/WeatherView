@@ -8,7 +8,7 @@ MENU_PROMPTS : |
 ADMIN_PROMPTS : |
   1. View data by user
   2. View data by place
-  3. View user history
+  3. View search history
 
   Enter your choice: 
 
