@@ -45,3 +45,21 @@ CITY : "q"
 DAYS : "days"
 
 QUIT : 'q'
+
+CITY_INPUT : "city"
+
+FIRST : '1'
+
+SECOND : '2'
+
+THIRD : '3'
+
+USER_DATA_HEADER : '"username","city","zipcode"'
+
+TABLE_FORMAT : 'rounded_outline'
+
+USER_BY_CITY_HEADER : '"user_id","username","city","zipcode"'
+
+HISTORY_HEADER : '"date_time", "city_name"'
+
+ALL_USERS_HEADER : '"user_id","username","city","zipcode"'

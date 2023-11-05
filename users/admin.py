@@ -8,14 +8,14 @@ def admin_controller():
     print(Config.LOGIN_ADMIN)
     admin_choice = input(Config.ADMIN_PROMPTS)
     while admin_choice != Config.QUIT:
-        if admin_choice == '1':
+        if admin_choice == Config.FIRST:
             username = input(Config.ENTER_USERNAME)
             fetch_user_data(username)
-        elif admin_choice == '2':
+        elif admin_choice == Config.SECOND:
             fetch_all_users()
             city = input(Config.ENTER_CITYNAME)
             fetch_user_by_city(city)
-        elif admin_choice == '3':
+        elif admin_choice == Config.THIRD:
             fetch_all_users()
             user_id = input(Config.ENTER_USERID)
             view_history(user_id)

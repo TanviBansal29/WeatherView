@@ -30,6 +30,15 @@ class Config:
             cls.CITY = data['CITY']
             cls.DAYS = data['DAYS']
             cls.QUIT = data['QUIT']
+            cls.CITY_INPUT = data['CITY_INPUT']
+            cls.FIRST = data['FIRST']
+            cls.SECOND = data['SECOND']
+            cls.THIRD = data['THIRD']
+            cls.USER_DATA_HEADER = data['USER_DATA_HEADER']
+            cls.TABLE_FORMAT = data['TABLE_FORMAT']
+            cls.USER_BY_CITY_HEADER = data['USER_BY_CITY_HEADER']
+            cls.HISTORY_HEADER = data['HISTORY_HEADER']
+            cls.ALL_USERS_HEADER = data['ALL_USERS_HEADER']
 
 
     @classmethod
@@ -47,6 +56,7 @@ class Config:
             cls.QUERY_TO_VIEW_USER_BY_PLACE = data['QUERY_TO_VIEW_USER_BY_PLACE']
             cls.QUERY_TO_VIEW_HISTORY = data['QUERY_TO_VIEW_HISTORY']
             cls.QUERY_TO_FETCH_ALL_USERS = data['QUERY_TO_FETCH_ALL_USERS']
+
 
     @classmethod
     def load_prompts(cls):

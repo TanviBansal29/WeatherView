@@ -11,10 +11,10 @@ class MainMenu:
     def start_menu(cls):
         print(Config.WELCOME_MESSAGE)
         user_option = input(Config.MENU_PROMPTS)
-        while user_option != 'q':
-            if user_option == '1':
+        while user_option != Config.QUIT:
+            if user_option == Config.FIRST:
                 Authentication.login()
-            elif user_option == '2':
+            elif user_option == Config.SECOND:
                 cls.signup()
             else:
                 print(Config.INVALID_INPUT)

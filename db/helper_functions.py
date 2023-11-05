@@ -59,8 +59,8 @@ def fetch_user_data(username):
         if len(data) == 0:
             print(Config.NO_DATA)
         else:
-            HEADERS  = ["username","city","zipcode"]
-            print(tabulate(data,headers=HEADERS,tablefmt='rounded_outline'))
+            HEADERS  = [Config.USER_DATA_HEADER]
+            print(tabulate(data,headers=HEADERS,tablefmt=Config.TABLE_FORMAT))
 
 
 def fetch_user_by_city(city):
@@ -70,8 +70,8 @@ def fetch_user_by_city(city):
         if len(data) == 0:
             print(Config.NO_DATA)
         else:
-            HEADERS  = ["user_id","username","city","zipcode"]
-            print(tabulate(data,headers=HEADERS,tablefmt='rounded_outline'))
+            HEADERS  = [Config.USER_BY_CITY_HEADER]
+            print(tabulate(data,headers=HEADERS,tablefmt=Config.TABLE_FORMAT))
 
 
 def view_history(user_id):
@@ -81,13 +81,13 @@ def view_history(user_id):
         if len(data) == 0:
             print(Config.NO_DATA)
         else:
-            HEADERS  = ["date_time", "city_name"]
-            print(tabulate(data,headers=HEADERS,tablefmt='rounded_outline'))
+            HEADERS  = [Config.HISTORY_HEADER]
+            print(tabulate(data,headers=HEADERS,tablefmt=Config.TABLE_FORMAT))
 
 
 def fetch_all_users():
     with DatabaseConnection(Config.DATABASE_NAME) as connection:
         cursor = connection.cursor()
         data = cursor.execute(Config.QUERY_TO_FETCH_ALL_USERS).fetchall()
-        HEADERS  = ["user_id","username","city","zipcode"]
-        print(tabulate(data,headers=HEADERS,tablefmt='rounded_outline'))
+        HEADERS  = [Config.ALL_USERS_HEADER]
+        print(tabulate(data,headers=HEADERS,tablefmt=Config.TABLE_FORMAT))
