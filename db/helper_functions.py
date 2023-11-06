@@ -9,10 +9,12 @@ def create_user_table():
         cursor = connection.cursor()
         cursor.execute(Config.QUERY_TO_CREATE_USERS_TABLE)
 
+
 def create_history_table():
     with DatabaseConnection(Config.DATABASE_NAME) as connection:
         cursor = connection.cursor()
         cursor.execute(Config.QUERY_TO_CREATE_SEARCH_HISTORY_TABLE)
+
 
 def verify_username(username):
     with DatabaseConnection(Config.DATABASE_NAME) as connection:
@@ -30,6 +32,7 @@ def create_user(username, password, city, zipcode):
         user_id = shortuuid.ShortUUID().random(length=5)
         cursor.execute(Config.QUERY_TO_CREATE_USER,(user_id, username, password, city, zipcode))
 
+
 def verify_user(username, password):
     with DatabaseConnection(Config.DATABASE_NAME) as connection:
         cursor = connection.cursor()
@@ -39,6 +42,7 @@ def verify_user(username, password):
             return False
         return True
 
+
 def fetch_role_and_id(username, password):
     with DatabaseConnection(Config.DATABASE_NAME) as connection:
         cursor = connection.cursor()
@@ -47,10 +51,12 @@ def fetch_role_and_id(username, password):
         user_id = data[0]
         return (role, user_id)
 
-def insert_history(user_id, date_time, city):
+
+def insert_history(user_id,searched_by, date_time, city):
     with DatabaseConnection(Config.DATABASE_NAME) as connection:
         cursor = connection.cursor()
-        cursor.execute(Config.QUERY_TO_INSERT_SEARCH_HISTORY, (user_id, date_time, city))
+        cursor.execute(Config.QUERY_TO_INSERT_SEARCH_HISTORY, (user_id,searched_by, date_time, city))
+
 
 def fetch_user_data(username):
     with DatabaseConnection(Config.DATABASE_NAME) as connection:
@@ -59,7 +65,7 @@ def fetch_user_data(username):
         if len(data) == 0:
             print(Config.NO_DATA)
         else:
-            HEADERS  = [Config.USER_DATA_HEADER]
+            HEADERS  = ["username","city","zipcode"]
             print(tabulate(data,headers=HEADERS,tablefmt=Config.TABLE_FORMAT))
 
 
@@ -70,7 +76,7 @@ def fetch_user_by_city(city):
         if len(data) == 0:
             print(Config.NO_DATA)
         else:
-            HEADERS  = [Config.USER_BY_CITY_HEADER]
+            HEADERS  = ["user_id","username","city","zipcode"]
             print(tabulate(data,headers=HEADERS,tablefmt=Config.TABLE_FORMAT))
 
 
@@ -81,7 +87,7 @@ def view_history(user_id):
         if len(data) == 0:
             print(Config.NO_DATA)
         else:
-            HEADERS  = [Config.HISTORY_HEADER]
+            HEADERS  = ["date_time", "city_name"]
             print(tabulate(data,headers=HEADERS,tablefmt=Config.TABLE_FORMAT))
 
 
@@ -89,5 +95,5 @@ def fetch_all_users():
     with DatabaseConnection(Config.DATABASE_NAME) as connection:
         cursor = connection.cursor()
         data = cursor.execute(Config.QUERY_TO_FETCH_ALL_USERS).fetchall()
-        HEADERS  = [Config.ALL_USERS_HEADER]
+        HEADERS  = ["user_id","username","city","zipcode"]
         print(tabulate(data,headers=HEADERS,tablefmt=Config.TABLE_FORMAT))

@@ -54,12 +54,8 @@ SECOND : '2'
 
 THIRD : '3'
 
-USER_DATA_HEADER : '"username","city","zipcode"'
-
 TABLE_FORMAT : 'rounded_outline'
 
-USER_BY_CITY_HEADER : '"user_id","username","city","zipcode"'
+CITY_NAME : "city name"
 
-HISTORY_HEADER : '"date_time", "city_name"'
-
-ALL_USERS_HEADER : '"user_id","username","city","zipcode"'
+LAT_LON : "Latitude & Longitude"

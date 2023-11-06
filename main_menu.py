@@ -1,3 +1,4 @@
+import hashlib
 from config.config import Config
 from pwinput import pwinput
 from db.helper_functions import verify_username
@@ -28,9 +29,10 @@ class MainMenu:
                 continue
             else:
                 password = pwinput(Config.ENTER_PASSWORD)
+                hashed_password = hashlib.sha256(password.encode()).hexdigest()
                 city = input(Config.ENTER_CITY)
                 zipcode = int(input(Config.ENTER_ZIPCODE))
-                create_user(username, password, city, zipcode)
+                create_user(username, hashed_password, city, zipcode)
                 break
 
 
