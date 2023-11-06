@@ -13,7 +13,7 @@ def admin_controller():
             fetch_user_data(username)
         elif admin_choice == Config.SECOND:
             fetch_all_users()
-            city = input(Config.ENTER_CITYNAME)
+            city = input(Config.ENTER_CITYNAME).lower()
             fetch_user_by_city(city)
         elif admin_choice == Config.THIRD:
             fetch_all_users()

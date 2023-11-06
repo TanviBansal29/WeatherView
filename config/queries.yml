@@ -13,13 +13,14 @@ QUERY_TO_CREATE_SEARCH_HISTORY_TABLE : |
                     CREATE TABLE IF NOT EXISTS search_history (
                     s_id INTEGER PRIMARY KEY AUTOINCREMENT,
                     user_id TEXT,
+                    searched_for TEXT,
                     searched_by TEXT,
                     date_time TEXT,
                     city TEXT,
                     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
                     )
 
-QUERY_TO_INSERT_SEARCH_HISTORY : INSERT INTO search_history (user_id,searched_by, date_time, city) VALUES (? ,?, ? ,?)
+QUERY_TO_INSERT_SEARCH_HISTORY : INSERT INTO search_history (user_id, searched_for, searched_by, date_time, city) VALUES (? ,? ,?, ? ,?)
 
 QUERY_TO_VERIFY_USERNAME : SELECT * FROM users WHERE username = ?
 
@@ -35,7 +36,7 @@ QUERY_TO_VIEW_USER : SELECT username, city, zipcode FROM users WHERE username = 
 
 QUERY_TO_VIEW_USER_BY_PLACE : SELECT user_id, username, city, zipcode FROM users WHERE city = ?
 
-QUERY_TO_VIEW_HISTORY : SELECT date_time, city FROM search_history WHERE user_id = ?
+QUERY_TO_VIEW_HISTORY : SELECT date_time, searched_for, searched_by, city FROM search_history WHERE user_id = ?
 
 QUERY_TO_FETCH_ALL_USERS : SELECT user_id, username, city, zipcode from users 
 

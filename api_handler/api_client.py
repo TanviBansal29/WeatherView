@@ -1,6 +1,6 @@
 import requests
 import os
-import datetime
+from config.config import Config
 from dotenv import load_dotenv
 from utils.pretty_print import get_table
 
@@ -26,8 +26,11 @@ class ApiClient:
         querystring = query_data
         response = requests.get(self.url_weather, headers=self.headers_weather, params=querystring)   
         data = response.json()
-        
-        print(get_table(data))
+
+        if get_table(data) == None:
+            print(Config.NO_DATA)
+        else:
+            print(get_table(data))
         
 
     def forecast_info(self, query_data):
@@ -39,6 +42,6 @@ class ApiClient:
 
         for index in new_data:    
             print(f'{str(index["date"]):20}{str(index["day"]["maxtemp_c"]):10}{str(index["day"]["mintemp_c"]):10}{str(index["day"]["avgtemp_c"]):10}{str(index["day"]["maxwind_mph"]):10}{str(index["day"]["avghumidity"]):10}{str(index["day"]["daily_chance_of_rain"]):10}{str(index["astro"]["sunrise"]):10}{str(index["astro"]["sunset"]):10}')
-        print("------------------------------------------------------------------------------\n")
+        print("----------------------------------------------------------------------------------------\n")
 
         

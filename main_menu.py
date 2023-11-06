@@ -30,7 +30,7 @@ class MainMenu:
             else:
                 password = pwinput(Config.ENTER_PASSWORD)
                 hashed_password = hashlib.sha256(password.encode()).hexdigest()
-                city = input(Config.ENTER_CITY)
+                city = input(Config.ENTER_CITY).lower()
                 zipcode = int(input(Config.ENTER_ZIPCODE))
                 create_user(username, hashed_password, city, zipcode)
                 break

@@ -16,7 +16,8 @@ def user_controller(user_id):
                     tm = datetime.now()
                     dt_string = tm.strftime(Config.FORMAT_DATE_TIME)
                     searched_by = Config.CITY_NAME
-                    insert_history(user_id, searched_by, dt_string, city_name)
+                    searched_for = Config.CURRENT_WEATHER
+                    insert_history(user_id, searched_for, searched_by, dt_string, city_name)
                     query_data = {Config.CITY_INPUT:city_name}
                     ap = ApiClient()
                     ap.get_data_by_city(query_data)
@@ -27,7 +28,8 @@ def user_controller(user_id):
                     tm = datetime.now()
                     dt_string = tm.strftime(Config.FORMAT_DATE_TIME)
                     searched_by = Config.LAT_LON
-                    insert_history(user_id, searched_by, dt_string, "-")
+                    searched_for = Config.CURRENT_WEATHER
+                    insert_history(user_id, searched_for, searched_by, dt_string, "-")
                     query_data = {Config.LAT : lat, Config.LON : lon}
                     ap = ApiClient()
                     ap.get_data_by_city(query_data)
@@ -40,7 +42,8 @@ def user_controller(user_id):
             tm = datetime.now()
             dt_string = tm.strftime(Config.FORMAT_DATE_TIME)
             searched_by = Config.CITY_NAME
-            insert_history(user_id, searched_by, dt_string, city_name)
+            searched_for = Config.FORECAST
+            insert_history(user_id, searched_for, searched_by, dt_string, city_name)
             days =  int(input(Config.ENTER_DAYS))
             query_data = {Config.CITY : city_name , Config.DAYS : days}
             ap = ApiClient()

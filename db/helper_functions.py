@@ -52,10 +52,10 @@ def fetch_role_and_id(username, password):
         return (role, user_id)
 
 
-def insert_history(user_id,searched_by, date_time, city):
+def insert_history(user_id, searched_for, searched_by, date_time, city):
     with DatabaseConnection(Config.DATABASE_NAME) as connection:
         cursor = connection.cursor()
-        cursor.execute(Config.QUERY_TO_INSERT_SEARCH_HISTORY, (user_id,searched_by, date_time, city))
+        cursor.execute(Config.QUERY_TO_INSERT_SEARCH_HISTORY, (user_id,searched_for, searched_by, date_time, city))
 
 
 def fetch_user_data(username):
@@ -87,7 +87,7 @@ def view_history(user_id):
         if len(data) == 0:
             print(Config.NO_DATA)
         else:
-            HEADERS  = ["date_time", "city_name"]
+            HEADERS  = ["date_time", "searched_for", "searched_by", "city_name"]
             print(tabulate(data,headers=HEADERS,tablefmt=Config.TABLE_FORMAT))
 
 

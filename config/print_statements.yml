@@ -1,6 +1,6 @@
-WELCOME_MESSAGE : "WELCOME TO WeatherView!"
+WELCOME_MESSAGE : "WELCOME TO WeatherView! \n"
 
-ENTER_USERNAME : "Enter username: "
+ENTER_USERNAME : "\nEnter username: "
 
 ENTER_PASSWORD : "Enter password: "
 
@@ -59,3 +59,7 @@ TABLE_FORMAT : 'rounded_outline'
 CITY_NAME : "city name"
 
 LAT_LON : "Latitude & Longitude"
+
+CURRENT_WEATHER : "current weather"
+
+FORECAST : "weather forecast"

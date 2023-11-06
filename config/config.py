@@ -37,6 +37,8 @@ class Config:
             cls.TABLE_FORMAT = data['TABLE_FORMAT']
             cls.CITY_NAME = data['CITY_NAME']
             cls.LAT_LON = data['LAT_LON']
+            cls.CURRENT_WEATHER = data['CURRENT_WEATHER']
+            cls.FORECAST = data['FORECAST']
 
     @classmethod
     def load_queries(cls):

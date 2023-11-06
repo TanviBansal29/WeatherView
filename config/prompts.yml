@@ -2,7 +2,7 @@ MENU_PROMPTS : |
   Press:
       1. Login
       2. SignUp
-  Enter your choice:
+  Enter your choice : 
  
 
 ADMIN_PROMPTS : |
@@ -10,14 +10,14 @@ ADMIN_PROMPTS : |
   2. View data by place
   3. View search history
 
-  Enter your choice: 
+  Enter your choice : 
 
 
 USER_PROMPTS : |
   1. View by place
   2. View by coordinates
 
-  Enter your choice:
+  Enter your choice :
 
 
 USER_VIEW_PROMPTS : |
