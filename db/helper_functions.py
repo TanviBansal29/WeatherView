@@ -81,14 +81,14 @@ def fetch_user_by_city(city):
 
 
 def view_history(user_id):
-    with DatabaseConnection(Config.DATABASE_NAME) as connection:
-        cursor = connection.cursor()
-        data = cursor.execute(Config.QUERY_TO_VIEW_HISTORY, (user_id,)).fetchall()
-        if len(data) == 0:
-            print(Config.NO_DATA)
-        else:
-            HEADERS  = ["date_time", "searched_for", "searched_by", "city_name"]
-            print(tabulate(data,headers=HEADERS,tablefmt=Config.TABLE_FORMAT))
+        with DatabaseConnection(Config.DATABASE_NAME) as connection:
+            cursor = connection.cursor()
+            data = cursor.execute(Config.QUERY_TO_VIEW_HISTORY, (user_id,)).fetchall()
+            if len(data) == 0:
+                print(Config.NO_DATA)
+            else:
+                HEADERS  = ["date_time", "searched_for", "searched_by", "city_name"]
+                print(tabulate(data,headers=HEADERS,tablefmt=Config.TABLE_FORMAT))
 
 
 def fetch_all_users():

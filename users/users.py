@@ -21,6 +21,7 @@ def user_controller(user_id):
                     query_data = {Config.CITY_INPUT:city_name}
                     ap = ApiClient()
                     ap.get_data_by_city(query_data)
+                    
                     break
                 elif user_choice == Config.SECOND:
                     lat = float(input(Config.LATITUDE))
