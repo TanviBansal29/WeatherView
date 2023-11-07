@@ -26,7 +26,7 @@ class MainMenu:
     @staticmethod
     def signup():
         while True:
-            username = input(Config.ENTER_USERNAME)
+            username = input(Config.ENTER_USERNAME).strip()
             if verify_username(username):
                 continue
             else:

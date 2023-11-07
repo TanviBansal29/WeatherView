@@ -14,7 +14,7 @@ class Authentication:
         def login():
             while True:
                 username = input(Config.ENTER_USERNAME)
-                password = pwinput(Config.ENTER_PASSWORD)
+                password = pwinput(Config.ENTER_PASSWORD).strip()
                 hashed_password = hashlib.sha256(password.encode()).hexdigest()
                 if not verify_user(username, hashed_password):
                     continue
