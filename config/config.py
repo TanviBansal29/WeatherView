@@ -64,6 +64,15 @@ class Config:
             cls.USER_PROMPTS = data['USER_PROMPTS']
             cls.ADMIN_PROMPTS = data['ADMIN_PROMPTS']
             cls.USER_VIEW_PROMPTS = data['USER_VIEW_PROMPTS']
+
+    @classmethod
+    def loader(cls, func):
+        def wrapper():
+            Config.load_print_statements()
+            Config.load_queries()
+            Config.load_prompts()
+            func()
+        return wrapper
             
 
 
