@@ -20,7 +20,7 @@ def verify_username(username):
     with DatabaseConnection(Config.DATABASE_NAME) as connection:
         cursor = connection.cursor()
         row = cursor.execute(Config.QUERY_TO_VERIFY_USERNAME, (username,)).fetchone()
-        if row is not None:
+        if row:
             print(Config.USERNAME_ERROR)
             return True
         return False
@@ -37,7 +37,7 @@ def verify_user(username, password):
     with DatabaseConnection(Config.DATABASE_NAME) as connection:
         cursor = connection.cursor()
         data = cursor.execute(Config.QUERY_TO_VERIFY_USER, (username, password)).fetchone()
-        if data is None:
+        if not data:
             print(Config.INVALID_CREDENTIALS)
             return False
         return True

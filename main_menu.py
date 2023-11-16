@@ -7,7 +7,8 @@ from db.helper_functions import create_user
 from authentication.authentication import Authentication
 
 # utils -> input validations, regex, logs
-logger = logging.getLogger('Auth')
+logger = logging.getLogger("Auth")
+
 
 class MainMenu:
     @classmethod
@@ -37,12 +38,3 @@ class MainMenu:
                 create_user(username, hashed_password, city, zipcode)
                 logger.info(f"Sucessfully signed up new user with {username}.")
                 break
-
-
-
-
-
-
-
-
-
