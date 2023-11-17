@@ -18,14 +18,4 @@ def main():
 
 main()
 
-# if __name__ == '__main__':
-#     logger.info('App started')
-#     Config.load_print_statements()
-#     Config.load_queries()
-#     Config.load_prompts()
-#     create_user_table()
-#     create_history_table()
-#     MainMenu.start_menu()
-#     logger.info('App ended')
-
     

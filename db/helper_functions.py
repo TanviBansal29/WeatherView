@@ -2,6 +2,7 @@ from db.database_connection import DatabaseConnection
 from config.config import Config
 from tabulate import tabulate
 import shortuuid
+import re
 
 
 def create_user_table():
@@ -97,3 +98,33 @@ def fetch_all_users():
         data = cursor.execute(Config.QUERY_TO_FETCH_ALL_USERS).fetchall()
         HEADERS  = ["user_id","username","city","zipcode"]
         print(tabulate(data,headers=HEADERS,tablefmt=Config.TABLE_FORMAT))
+
+def password_validation(password):
+    reg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$"
+    pat = re.compile(reg)
+    mat = re.search(pat,password)
+    if not mat:
+        return True
+    return False
+
+def verify_zipcode(zipcode):
+    reg = "^\d{6}(?:[-\s]\d{4})?$"
+    pat = re.compile(reg)
+    mat = re.search(pat,zipcode)
+    if not mat:
+        return True
+    return False
+
+def verify_cityname(city):
+    reg = "^[A-z\s.-]{1,28}"
+    pat = re.compile(reg)
+    mat = re.search(pat, city)
+    if not mat:
+        return True
+    return False
+
+        
+
+
+
+

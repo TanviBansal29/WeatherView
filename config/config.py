@@ -39,6 +39,7 @@ class Config:
             cls.LAT_LON = data['LAT_LON']
             cls.CURRENT_WEATHER = data['CURRENT_WEATHER']
             cls.FORECAST = data['FORECAST']
+            cls.STRONG_PASSWORD_PROMPT = data['STRONG_PASSWORD_PROMPT']
 
     @classmethod
     def load_queries(cls):

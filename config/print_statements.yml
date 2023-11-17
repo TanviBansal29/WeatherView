@@ -63,3 +63,10 @@ LAT_LON : "Latitude & Longitude"
 CURRENT_WEATHER : "current weather"
 
 FORECAST : "weather forecast"
+
+STRONG_PASSWORD_PROMPT : |
+  Your password must contain:
+    1. Minimum eight characters
+    2. At least one uppercase letter
+    3. One lowercase letter and one number
+  New Password:
