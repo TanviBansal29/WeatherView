@@ -33,6 +33,7 @@ class ApiClient:
             print(Config.NO_DATA)
         else:
             print(get_table(data))
+            
 
     def forecast_info(self, query_data):
         querystring = query_data

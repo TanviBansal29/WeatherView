@@ -40,6 +40,9 @@ class Config:
             cls.CURRENT_WEATHER = data['CURRENT_WEATHER']
             cls.FORECAST = data['FORECAST']
             cls.STRONG_PASSWORD_PROMPT = data['STRONG_PASSWORD_PROMPT']
+            cls.CITY_REGEX = data['CITY_REGEX']
+            cls.ZIPCODE_REGEX = data['ZIPCODE_REGEX']
+            cls.PASSWORD_REGEX = data['PASSWORD_REGEX']
 
     @classmethod
     def load_queries(cls):

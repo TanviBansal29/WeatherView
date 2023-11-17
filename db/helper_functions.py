@@ -88,7 +88,7 @@ def view_history(user_id):
             if len(data) == 0:
                 print(Config.NO_DATA)
             else:
-                HEADERS  = ["date_time", "searched_for", "searched_by", "city_name"]
+                HEADERS  = ["date time", "searched_for", "searched_by", "city_name"]
                 print(tabulate(data,headers=HEADERS,tablefmt=Config.TABLE_FORMAT))
 
 
@@ -100,7 +100,7 @@ def fetch_all_users():
         print(tabulate(data,headers=HEADERS,tablefmt=Config.TABLE_FORMAT))
 
 def password_validation(password):
-    reg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$"
+    reg = Config.PASSWORD_REGEX
     pat = re.compile(reg)
     mat = re.search(pat,password)
     if not mat:
@@ -108,7 +108,7 @@ def password_validation(password):
     return False
 
 def verify_zipcode(zipcode):
-    reg = "^\d{6}(?:[-\s]\d{4})?$"
+    reg = Config.ZIPCODE_REGEX
     pat = re.compile(reg)
     mat = re.search(pat,zipcode)
     if not mat:
@@ -116,7 +116,7 @@ def verify_zipcode(zipcode):
     return False
 
 def verify_cityname(city):
-    reg = "^[A-z\s.-]{1,28}"
+    reg = Config.CITY_REGEX 
     pat = re.compile(reg)
     mat = re.search(pat, city)
     if not mat:

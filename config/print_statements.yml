@@ -70,3 +70,9 @@ STRONG_PASSWORD_PROMPT : |
     2. At least one uppercase letter
     3. One lowercase letter and one number
   New Password:
+
+CITY_REGEX : '^[A-Za-z]{1,28}$'
+
+ZIPCODE_REGEX : '^\d{6}(?:[-\s]\d{4})?$'
+
+PASSWORD_REGEX : '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$'

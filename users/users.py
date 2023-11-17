@@ -1,4 +1,5 @@
 from datetime import datetime
+import os
 from api_handler.api_client import ApiClient
 from config.config import Config
 from db.helper_functions import insert_history
@@ -54,5 +55,6 @@ def user_controller(user_id):
             pass
         else:
             print(Config.INVALID_INPUT)
+
         user_input = input(Config.USER_VIEW_PROMPTS)
 
