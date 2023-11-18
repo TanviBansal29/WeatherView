@@ -45,4 +45,5 @@ class MainMenu:
         while verify_zipcode(zipcode):
             zipcode = input("Please enter a valid zipcode: ")
         create_user(username, hashed_password, city, zipcode)
+        print("Signed up successfully\n")
         logger.info(f"Sucessfully signed up new user with {username}.")
