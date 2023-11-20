@@ -28,7 +28,7 @@ QUERY_TO_VERIFY_USER : SELECT * FROM users WHERE username = ? AND password = ?
 
 QUERY_TO_CREATE_USER : INSERT INTO users (user_id, username, password, city, zipcode) VALUES (?, ?, ?, ?, ?)
 
-QUERY_TO_FETCH_ROLE : SELECT * FROM users WHERE username = ? AND password = ?
+QUERY_TO_FETCH_ROLE : SELECT * FROM users WHERE username = ?
 
 QUERY_TO_ENALE_FOREIGN_KEY : PRAGMA foreign_keys = 1
 

@@ -1,11 +1,9 @@
-import os
 import sqlite3
 from config.config import Config
 from helpers.exceptions import DbException
 from dotenv import load_dotenv
 
 load_dotenv()
-
 
 class Database:
     def __init__(self, file):
@@ -20,7 +18,7 @@ class Database:
         except Exception:
             raise DbException()
 
-    def get_item(self, query, data=None):
+    def get_item(self, query, data=()):
         try:
             self.cursor.execute(query, data)
             response = self.cursor.fetchone()
@@ -29,7 +27,7 @@ class Database:
         else:
             return response
 
-    def get_items(self, query, data):
+    def get_items(self, query, data=()):
         try:
             self.cursor.execute(query, data)
             response = self.cursor.fetchall()
@@ -38,7 +36,5 @@ class Database:
             raise DbException
         else:
             return response
-
-
 
 db = Database(Config.DATABASE_NAME)

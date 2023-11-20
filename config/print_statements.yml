@@ -74,3 +74,7 @@ CITY_REGEX : '^[A-Za-z]{1,28}$'
 ZIPCODE_REGEX : '^\d{6}(?:[-\s]\d{4})?$'
 
 PASSWORD_REGEX : '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$'
+
+SIGNUP_PRMOMPT  : "SIGNED UP SUCCESSFULLY! \n"
+
+USERNAME_REGEX : "^[A-Za-z0-9]{1,20}"

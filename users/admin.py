@@ -1,7 +1,7 @@
 from config.config import Config
 from db.helper_functions import fetch_user_data
 from db.helper_functions import fetch_user_by_city
-from db.helper_functions import view_history
+from controllers.history import History
 from db.helper_functions import fetch_all_users
 
 def admin_controller():
@@ -18,7 +18,7 @@ def admin_controller():
         elif admin_choice == Config.THIRD:
             fetch_all_users()
             user_id = input(Config.ENTER_USERID)
-            view_history(user_id)
+            History.view_history(user_id)
         else:
             print(Config.INVALID_INPUT)
         admin_choice = input(Config.ADMIN_PROMPTS)

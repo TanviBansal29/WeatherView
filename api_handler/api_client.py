@@ -27,13 +27,9 @@ class ApiClient:
         response = requests.get(
             self.url_weather, headers=self.headers_weather, params=querystring
         )
-        data = response.json()
-
-        if get_table(data) == None:
-            print(Config.NO_DATA)
-        else:
-            print(get_table(data))
-            
+        if response.status_code == 200:
+            data = response.json()
+            return data
 
     def forecast_info(self, query_data):
         querystring = query_data

@@ -43,6 +43,8 @@ class Config:
             cls.CITY_REGEX = data['CITY_REGEX']
             cls.ZIPCODE_REGEX = data['ZIPCODE_REGEX']
             cls.PASSWORD_REGEX = data['PASSWORD_REGEX']
+            cls.SIGNUP_PRMOMPT = data['SIGNUP_PRMOMPT']
+            cls.USERNAME_REGEX = data['USERNAME_REGEX']
 
     @classmethod
     def load_queries(cls):
