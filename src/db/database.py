@@ -1,7 +1,7 @@
 import sqlite3
-from config.config import Config
-from helpers.exceptions import DbException
 from dotenv import load_dotenv
+from src.config.config import Config
+from src.helpers.exceptions import DbException
 
 load_dotenv()
 

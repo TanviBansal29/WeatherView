@@ -1,13 +1,8 @@
 import requests
 import os
-from config.config import Config
 from dotenv import load_dotenv
-from utils.pretty_print import get_table
 
 load_dotenv()
-
-TABLE_HEADER = f"{'Date':20}{'Max temp':10}{'Min temp':10}{'Avg temp':10}{'Windspeed':10}{'Humidity':10}{'Rain':10}{'Sunrise':10}{'Sunset':10}"
-
 
 class ApiClient:
     def __init__(self):
@@ -27,7 +22,8 @@ class ApiClient:
         response = requests.get(
             self.url_weather, headers=self.headers_weather, params=querystring
         )
-        if response.status_code == 200:
+        if response.status_code in (200, 201):  
+            #It's a HTTP status code, it means "OK" (Eg: The server successfully answered the http request).
             data = response.json()
             return data
 
@@ -37,13 +33,19 @@ class ApiClient:
             self.url_forecast, headers=self.headers_forecast, params=querystring
         )
         data = response.json()
-        new_data = data["forecast"]["forecastday"]
-        print(TABLE_HEADER)
+        data = data.get("forecast")
 
-        for index in new_data:
-            print(
-                f'{str(index["date"]):20}{str(index["day"]["maxtemp_c"]):10}{str(index["day"]["mintemp_c"]):10}{str(index["day"]["avgtemp_c"]):10}{str(index["day"]["maxwind_mph"]):10}{str(index["day"]["avghumidity"]):10}{str(index["day"]["daily_chance_of_rain"]):10}{str(index["astro"]["sunrise"]):10}{str(index["astro"]["sunset"]):10}'
-            )
-        print(
-            "----------------------------------------------------------------------------------------\n"
-        )
+        if data:
+            forecast_data = []
+            for data in data.get("forecastday"):
+                forecastday_data = []
+                forecastday_data.append(data.get("date"))
+                forecastday_data.append(data.get("day").get("maxtemp_c"))
+                forecastday_data.append(data.get("day").get("mintemp_c"))
+                forecastday_data.append(data.get("day").get("maxwind_mph"))
+                forecastday_data.append(data.get("day").get("daily_chance_of_rain"))
+                forecastday_data.append(data.get("astro").get("sunrise"))
+                forecastday_data.append(data.get("astro").get("sunset"))
+                forecast_data.append(forecastday_data)
+        
+        return forecast_data

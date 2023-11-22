@@ -8,7 +8,7 @@ ENTER_CITY : "Enter your city: "
 
 ENTER_ZIPCODE : "Enter zipcode: "
 
-DATABASE_NAME : 'C:\Users\tbansal\OneDrive - WatchGuard Technologies Inc\Documents\Weather_App\db\data.db'
+DATABASE_NAME : "src/db/data.db"
 
 LOGIN_ADMIN : "LOGGED IN AS ADMIN...\n"
 

@@ -1,5 +1,5 @@
 import re
-from config.config import Config
+from src.config.config import Config
 
 class Validator:
     @staticmethod
@@ -15,7 +15,6 @@ class Validator:
         pat = re.compile(reg)
         mat = re.search(pat,zipcode)
         return mat
-
 
     @staticmethod
     def validate_cityname(city):
