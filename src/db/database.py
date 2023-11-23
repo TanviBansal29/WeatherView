@@ -1,9 +1,10 @@
 import sqlite3
 from dotenv import load_dotenv
-from src.config.config import Config
-from src.helpers.exceptions import DbException
+from config.config import Config
+from helpers.exceptions import DbException
 
 load_dotenv()
+
 
 class Database:
     def __init__(self, file):
@@ -13,10 +14,13 @@ class Database:
     def add_item(self, query, data):
         try:
             self.cursor.execute(query, data)
+            _id = self.cursor.last
             self.connection.commit()
 
         except Exception:
             raise DbException()
+        else:
+            return _id
 
     def get_item(self, query, data=()):
         try:
@@ -36,5 +40,10 @@ class Database:
             raise DbException
         else:
             return response
+
+    def __del__(self):
+        print("Closing....")
+        self.connection.close()
+        super().__del__()
 
 db = Database(Config.DATABASE_NAME)

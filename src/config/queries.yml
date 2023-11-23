@@ -22,13 +22,13 @@ QUERY_TO_CREATE_SEARCH_HISTORY_TABLE : |
 
 QUERY_TO_INSERT_SEARCH_HISTORY : INSERT INTO search_history (user_id, searched_for, searched_by, date_time, city) VALUES (? ,? ,?, ? ,?)
 
-QUERY_TO_VERIFY_USERNAME : SELECT * FROM users WHERE username = ?
+QUERY_TO_VERIFY_USERNAME : SELECT username FROM users WHERE username = ?
 
-QUERY_TO_VERIFY_USER : SELECT * FROM users WHERE username = ? AND password = ?
+QUERY_TO_VERIFY_USER : SELECT username FROM users WHERE username = ? AND password = ?
 
 QUERY_TO_CREATE_USER : INSERT INTO users (user_id, username, password, city, zipcode) VALUES (?, ?, ?, ?, ?)
 
-QUERY_TO_FETCH_ROLE : SELECT * FROM users WHERE username = ?
+QUERY_TO_FETCH_ROLE : SELECT user_id, role FROM users WHERE username = ?
 
 QUERY_TO_ENALE_FOREIGN_KEY : PRAGMA foreign_keys = 1
 

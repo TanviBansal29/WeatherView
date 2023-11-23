@@ -17,4 +17,5 @@ class History:
         date_time = tm.strftime(Config.FORMAT_DATE_TIME)
         searched_by = Config.CITY_NAME
         searched_for = Config.CURRENT_WEATHER
-        db.add_item(Config.QUERY_TO_INSERT_SEARCH_HISTORY, (self.user_id,searched_for, searched_by, date_time, self.city))
+        _id = db.add_item(Config.QUERY_TO_INSERT_SEARCH_HISTORY, (self.user_id,searched_for, searched_by, date_time, self.city))
+        return _id

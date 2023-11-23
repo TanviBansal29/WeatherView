@@ -11,6 +11,7 @@ pyyaml = "*"
 prettytable = "*"
 requests = "*"
 python-dotenv = "*"
+pytest-mock = "*"
 
 [dev-packages]
 

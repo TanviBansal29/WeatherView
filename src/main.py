@@ -1,5 +1,6 @@
 import logging
 from main_menu import MainMenu
+from db.database import db
 
 
 logging.basicConfig(format="%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s",
@@ -11,5 +12,3 @@ logger.info('App started')
 MainMenu.start_menu()
 logger.info('App ended')
 
-
-    

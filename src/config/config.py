@@ -58,7 +58,7 @@ class Config:
 
     @classmethod
     def load_print_statements(cls):
-        with open('src\\config\\print_statements.yml','r') as f:
+        with open('src\\config\\print_statements.yml', 'r') as f:
             data = yaml.safe_load(f)
             cls.WELCOME_MESSAGE = data['WELCOME_MESSAGE']
             cls.ENTER_USERNAME = data['ENTER_USERNAME']
@@ -118,7 +118,7 @@ class Config:
 
     @classmethod
     def load_prompts(cls):
-        with open('src\\config\\prompts.yml','r') as f:
+        with open('src\\config\\prompts.yml', 'r') as f:
             data = yaml.safe_load(f)     
             cls.MENU_PROMPTS = data['MENU_PROMPTS']   
             cls.USER_PROMPTS = data['USER_PROMPTS']

@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 class ApiClient:
     def __init__(self):
         self.url_weather = "https://weather-by-api-ninjas.p.rapidapi.com/v1/weather"
@@ -22,8 +23,7 @@ class ApiClient:
         response = requests.get(
             self.url_weather, headers=self.headers_weather, params=querystring
         )
-        if response.status_code in (200, 201):  
-            #It's a HTTP status code, it means "OK" (Eg: The server successfully answered the http request).
+        if response.status_code == 200:
             data = response.json()
             return data
 
@@ -36,16 +36,21 @@ class ApiClient:
         data = data.get("forecast")
 
         if data:
-            forecast_data = []
-            for data in data.get("forecastday"):
-                forecastday_data = []
-                forecastday_data.append(data.get("date"))
-                forecastday_data.append(data.get("day").get("maxtemp_c"))
-                forecastday_data.append(data.get("day").get("mintemp_c"))
-                forecastday_data.append(data.get("day").get("maxwind_mph"))
-                forecastday_data.append(data.get("day").get("daily_chance_of_rain"))
-                forecastday_data.append(data.get("astro").get("sunrise"))
-                forecastday_data.append(data.get("astro").get("sunset"))
-                forecast_data.append(forecastday_data)
-        
+            forecast_data = self.__parse_forecast_response(data)
+            return forecast_data
+
+    @staticmethod
+    def __parse_forecast_response(data):
+        forecast_data = []
+        for data in data.get("forecastday"):
+            forecastday_data = []
+            forecastday_data.append(data.get("date"))
+            forecastday_data.append(data.get("day").get("maxtemp_c"))
+            forecastday_data.append(data.get("day").get("mintemp_c"))
+            forecastday_data.append(data.get("day").get("maxwind_mph"))
+            forecastday_data.append(data.get("day").get("daily_chance_of_rain"))
+            forecastday_data.append(data.get("astro").get("sunrise"))
+            forecastday_data.append(data.get("astro").get("sunset"))
+            forecast_data.append(forecastday_data)
+
         return forecast_data

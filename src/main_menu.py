@@ -1,6 +1,5 @@
 import hashlib
 import logging
-from os import system
 from config.config import Config
 from pwinput import pwinput
 from controllers.history import History
@@ -12,6 +11,7 @@ from controllers.authentication import Authentication
 from utils.pretty_print import get_table
 
 logger = logging.getLogger("Auth")
+
 
 class MainMenu:
     @classmethod
@@ -28,7 +28,7 @@ class MainMenu:
 
             else:
                 print(Config.INVALID_INPUT)
-                
+
             user_option = input(Config.MENU_PROMPTS)
         # system('cls')
 
@@ -42,12 +42,13 @@ class MainMenu:
             if isUserValid:
                 break
             print(Config.INVALID_CREDENTIALS)
-        role, user_id = auth.get_role()
+        role = auth.get_role().get("role")
+        user_id = auth.get_role().get("user_id")
         if role == Config.ADMIN:
             adminhelper_obj = AdminHelper()
             adminhelper_obj.admin_controller()
         else:
-            userhelper_obj  = UserHelper(user_id)
+            userhelper_obj = UserHelper(user_id)
             userhelper_obj.user_controller()
 
     @staticmethod
@@ -68,7 +69,7 @@ class MainMenu:
             print(Config.USERNAME_ERROR)
             username = MainMenu.__get_username()
         return username
-    
+
     @staticmethod
     def __get_username():
         username = input(Config.ENTER_USERNAME).strip()
@@ -83,21 +84,21 @@ class MainMenu:
             password = pwinput(Config.STRONG_PASSWORD_PROMPT)
         hashed_password = hashlib.sha256(password.encode()).hexdigest()
         return hashed_password
-    
+
     @staticmethod
     def __get_cityname():
         city = input(Config.ENTER_CITY).lower()
         while not Validator.validate_cityname(city):
             city = input("Please enter valid city name : ").lower()
         return city
-    
+
     @staticmethod
     def __get_zipcode():
         zipcode = input(Config.ENTER_ZIPCODE)
         while not Validator.validate_zipcode(zipcode):
             zipcode = input("Please enter a valid zipcode: ")
         return zipcode
-    
+
 
 class AdminHelper:
     def admin_controller(self):
@@ -120,33 +121,37 @@ class AdminHelper:
     def __get_user_data_helper(self):
         data = self.__get_user_data()
         if data:
-            TableHelper.print_table(data, type = "username")
+            TableHelper.print_table(data, type="username")
         else:
             print(Config.NO_DATA)
 
     def __get_user_data(self):
         username = input(Config.ENTER_USERNAME)
-        data = User.fetch_user_data(username)
+        user = User(username)
+        data = user.fetch_user_data()
         return data
-    
+
     def __get_user_by_city_helper(self):
-        User.fetch_all_users()
+        user = User()
+        user.fetch_all_users()
         data = self.__get_user_by_city()
         if data:
-            TableHelper.print_table(data, type = "city")      
+            TableHelper.print_table(data, type="city")
         else:
             print(Config.NO_DATA)
 
     def __get_user_history_helper(self):
-        User.fetch_all_users()
+        user = User()
+        user.fetch_all_users()
         data = self.__get_user_history()
         print(data)
 
     def __get_user_by_city(self):
         city = input(Config.ENTER_CITYNAME).lower()
-        data = User.fetch_user_by_city(city)
+        user = User(city=city)
+        data = user.fetch_user_by_city()
         return data
-    
+
     def __get_user_history(self):
         user_id = input(Config.ENTER_USERID)
         history_obj = History(user_id)
@@ -192,20 +197,20 @@ class UserHelper:
 
     def __get_weather_data_by_city_helper(self):
         city_name = input(Config.ENTER_CITYNAME)
-        weather_obj = Weather(city_name = city_name)
+        weather_obj = Weather(city_name=city_name)
         data = weather_obj.get_weather_by_city()
         if data:
             print(get_table(data))
         history_obj = History(self.user_id, city_name)
         history_obj.insert_history()
-     
 
     def __get_weather_forecast(self):
         city_name = input(Config.ENTER_CITYNAME)
-        weather_obj = Weather(city_name = city_name)
-        data = weather_obj.get_forecast()
+        weather_obj = Weather(city_name=city_name)
+        days = int(input(Config.ENTER_DAYS))
+        data = weather_obj.get_forecast(days)
         if data:
-            TableHelper.print_table(data, type = "forecast")
+            TableHelper.print_table(data, type="forecast")
             history_obj = History(self.user_id, city_name)
             history_obj.insert_history()
         else:
@@ -215,14 +220,14 @@ class UserHelper:
         history_obj = History(self.user_id)
         data = history_obj.view_history()
         if data:
-            TableHelper.print_table(data, type = "history")
+            TableHelper.print_table(data, type="history")
         else:
             print(Config.NO_DATA)
 
     def __get_weather_data_by_coordinates_helper(self):
         lat = float(input(Config.LATITUDE))
         lon = input(Config.LONGITUDE)
-        weather_obj = Weather(lat = lat, lon = lon)
-        weather_obj.get_weather_by_cordinates()
-        history_obj = History(self.user_id,"-")
+        weather_obj = Weather(lat=lat, lon=lon)
+        weather_obj.get_weather_by_coordinates()
+        history_obj = History(self.user_id, "-")
         history_obj.insert_history()
