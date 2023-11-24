@@ -1,7 +1,7 @@
 import logging
 import hashlib
 import shortuuid
-from src.db.database import db
+from db.database import db
 from config.config import Config
 
 logger = logging.getLogger('Logging')
