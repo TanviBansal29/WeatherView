@@ -1,3 +1,2 @@
 class DbException(Exception):
     pass
-

@@ -1,6 +1,8 @@
 import yaml
 
+
 class Config:
+    SIGNUP_PROMPT = None
     WELCOME_MESSAGE = None
     ENTER_USERNAME = None
     ENTER_PASSWORD = None
@@ -11,7 +13,7 @@ class Config:
     INVALID_INPUT = None
     LOGIN_USER = None
     USERNAME_ERROR = None
-    INVALID_CREDENTIALS =None 
+    INVALID_CREDENTIALS = None
     LATITUDE = None
     LONGITUDE = None
     NO_DATA = None
@@ -51,7 +53,7 @@ class Config:
     QUERY_TO_VIEW_USER_BY_PLACE = None
     QUERY_TO_VIEW_HISTORY = None
     QUERY_TO_FETCH_ALL_USERS = None
-    MENU_PROMPTS = None   
+    MENU_PROMPTS = None
     USER_PROMPTS = None
     ADMIN_PROMPTS = None
     USER_VIEW_PROMPTS = None
@@ -97,12 +99,12 @@ class Config:
             cls.CITY_REGEX = data['CITY_REGEX']
             cls.ZIPCODE_REGEX = data['ZIPCODE_REGEX']
             cls.PASSWORD_REGEX = data['PASSWORD_REGEX']
-            cls.SIGNUP_PRMOMPT = data['SIGNUP_PRMOMPT']
+            cls.SIGNUP_PROMPT = data['SIGNUP_PROMPT']
             cls.USERNAME_REGEX = data['USERNAME_REGEX']
 
     @classmethod
     def load_queries(cls):
-        with open('src\\config\\queries.yml','r') as f:
+        with open('src\\config\\queries.yml', 'r') as f:
             data = yaml.safe_load(f)
             cls.QUERY_TO_CREATE_USERS_TABLE = data['QUERY_TO_CREATE_USERS_TABLE']
             cls.QUERY_TO_VERIFY_USERNAME = data['QUERY_TO_VERIFY_USERNAME']
@@ -119,16 +121,13 @@ class Config:
     @classmethod
     def load_prompts(cls):
         with open('src\\config\\prompts.yml', 'r') as f:
-            data = yaml.safe_load(f)     
-            cls.MENU_PROMPTS = data['MENU_PROMPTS']   
+            data = yaml.safe_load(f)
+            cls.MENU_PROMPTS = data['MENU_PROMPTS']
             cls.USER_PROMPTS = data['USER_PROMPTS']
             cls.ADMIN_PROMPTS = data['ADMIN_PROMPTS']
             cls.USER_VIEW_PROMPTS = data['USER_VIEW_PROMPTS']
 
-            
+
 Config.load_print_statements()
 Config.load_queries()
 Config.load_prompts()
-    
-
-

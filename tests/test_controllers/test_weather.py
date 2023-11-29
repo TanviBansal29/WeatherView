@@ -1,6 +1,6 @@
 from unittest import mock
 from unittest import TestCase
-from controllers.weather import Weather
+from src.controllers.weather import Weather
 
 
 class TestAccount(TestCase):

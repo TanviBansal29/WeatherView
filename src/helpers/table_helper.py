@@ -4,20 +4,29 @@ from config.config import Config
 
 
 class TableHelper:
+    """
+        Table Helper class to tabulate and print table
+    """
     USERNAME_HEADERS = ("username", "city", "zipcode")
     CITY_HEADERS = ("user_id", "username", "city", "zipcode")
     HISTORY_HEADERS = ("date time", "searched_for", "searched_by", "city_name")
-    FORECAST_HEADER = ('Date', 'Max temp', 'Min temp', 'Windspeed', 'Rain', 'Sunrise', 'Sunset')
+    FORECAST_HEADER = ('Date', 'Max temp', 'Min temp', 'Windspeed', 'Sunrise', 'Sunset')
+    WEATHER_HEADER = ('Max temp', 'Min temp', 'Windspeed', 'Sunrise', 'Sunset')
 
     @staticmethod
     def print_table(data, type):
+        """
+            Function to print table
+        """
         if type == "username":
-            HEADERS = TableHelper.USERNAME_HEADERS
+            table_headers = TableHelper.USERNAME_HEADERS
         if type == "city":
-            HEADERS = TableHelper.CITY_HEADERS
+            table_headers = TableHelper.CITY_HEADERS
         if type == "history":
-            HEADERS = TableHelper.HISTORY_HEADERS
+            table_headers = TableHelper.HISTORY_HEADERS
         if type == "forecast":
-            HEADERS = TableHelper.FORECAST_HEADER
+            table_headers = TableHelper.FORECAST_HEADER
+        if type == "weather":
+            table_headers = TableHelper.WEATHER_HEADER
 
-        print(tabulate(data, headers=HEADERS, tablefmt=Config.TABLE_FORMAT))
+        print(tabulate(data, headers=table_headers, tablefmt=Config.TABLE_FORMAT))

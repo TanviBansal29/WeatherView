@@ -14,13 +14,12 @@ class Database:
     def add_item(self, query, data):
         try:
             self.cursor.execute(query, data)
-            _id = self.cursor.last
+            _id = self.cursor.lastrowid
             self.connection.commit()
 
         except Exception:
             raise DbException()
-        else:
-            return _id
+        return _id
 
     def get_item(self, query, data=()):
         try:
@@ -28,8 +27,8 @@ class Database:
             response = self.cursor.fetchone()
         except Exception:
             raise DbException
-        else:
-            return response
+
+        return response
 
     def get_items(self, query, data=()):
         try:
@@ -38,12 +37,11 @@ class Database:
             self.connection.commit()
         except Exception:
             raise DbException
-        else:
-            return response
+        return response
 
     def __del__(self):
         print("Closing....")
         self.connection.close()
-        super().__del__()
+
 
 db = Database(Config.DATABASE_NAME)
