@@ -20,7 +20,6 @@ class TestAccount(TestCase):
         mocked_db_object.get_item.assert_called_once()
         self.assertEqual(response, None)
 
-
     @mock.patch("controllers.authentication.db")
     def test_verify_user_success(self, mocked_db_object):
         mocked_db_object.get_item.return_value = ("tanvi")
@@ -62,4 +61,3 @@ class TestAccount(TestCase):
         response = self.obj.create_account()
         mocked_db_object.add_item.assert_called_once()
         self.assertEqual(response, None)
-        

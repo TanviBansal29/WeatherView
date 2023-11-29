@@ -21,7 +21,6 @@ class TestAccount(TestCase):
         mocked_db_object.assert_called_once()
         self.assertEqual(response, None)
 
-        ##############
     @mock.patch("api_handler.api_client.ApiClient.get_data_by_city")
     def test_get_weather_by_coordinates_success(self, mocked_db_object):
         mocked_db_object.return_value = ("weather_data")
@@ -36,8 +35,6 @@ class TestAccount(TestCase):
         mocked_db_object.assert_called_once()
         self.assertEqual(response, None)
 
-
-        ############################
     @mock.patch("api_handler.api_client.ApiClient.forecast_info")
     def test_get_forecast_success(self, mocked_db_object):
         mocked_db_object.return_value = ("weather_data")
