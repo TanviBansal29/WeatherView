@@ -1,4 +1,4 @@
-from tabulate import tabulate
+from tabulate import tabulate as tb
 
 from config.config import Config
 
@@ -18,6 +18,7 @@ class TableHelper:
         """
             Function to print table
         """
+
         if type == "username":
             table_headers = TableHelper.USERNAME_HEADERS
         if type == "city":
@@ -29,4 +30,4 @@ class TableHelper:
         if type == "weather":
             table_headers = TableHelper.WEATHER_HEADER
 
-        print(tabulate(data, headers=table_headers, tablefmt=Config.TABLE_FORMAT))
+        print(tb(data, headers=table_headers, tablefmt=Config.TABLE_FORMAT))
