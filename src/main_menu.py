@@ -5,8 +5,8 @@ from pwinput import pwinput
 from config.config import Config
 from controllers.authentication import Authentication
 from helpers.validations import Validator
-from helpers.views.admin_view import AdminHelper
-from helpers.views.user_view import UserHelper
+from views.admin_view import AdminHelper
+from views.user_view import UserHelper
 
 logger = logging.getLogger("Auth")
 

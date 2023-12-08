@@ -24,10 +24,10 @@ class Database:
     def get_item(self, query, data=()):
         try:
             self.cursor.execute(query, data)
+            print(self.cursor)
             response = self.cursor.fetchone()
         except Exception:
             raise DbException
-
         return response
 
     def get_items(self, query, data=()):
