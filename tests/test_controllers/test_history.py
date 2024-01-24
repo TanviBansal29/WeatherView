@@ -1,6 +1,6 @@
 from unittest import mock
 from unittest import TestCase
-from controllers.history import History
+from handler.history import History
 
 
 class TestAccount(TestCase):

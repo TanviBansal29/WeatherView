@@ -25,7 +25,6 @@ class TestAccount(TestCase):
             self.obj.add_item('',"")
       
 
-
     def test_get_item(self):
         self.obj.cursor.fetchone.return_value = [("",)]
         response = self.obj.get_item('',())

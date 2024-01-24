@@ -41,7 +41,6 @@ class ApiClient:
             self.__parse_weather_response(weather_data, data)
             self.__parse_astro_data(weather_data, data)
             return weather_data
-        
 
     def forecast_info(self, query_data):
         """

@@ -1,15 +1,18 @@
-import sqlite3
+import mysql.connector
 from dotenv import load_dotenv
 from config.config import Config
 from helpers.exceptions import DbException
 
 load_dotenv()
 
-
 class Database:
     def __init__(self, file):
-        self.connection = sqlite3.connect(file)
+        self.connection = mysql.connector.connect(user='tanvi', password='123456',
+                              host='127.0.0.1',
+                              database='weatherdb')
         self.cursor = self.connection.cursor()
+        self.cursor.execute(Config.QUERY_TO_CREATE_USERS_TABLE)
+        self.cursor.execute(Config.QUERY_TO_CREATE_SEARCH_HISTORY_TABLE)
 
     def add_item(self, query, data):
         try:
@@ -24,7 +27,6 @@ class Database:
     def get_item(self, query, data=()):
         try:
             self.cursor.execute(query, data)
-            print(self.cursor)
             response = self.cursor.fetchone()
         except Exception:
             raise DbException
@@ -39,9 +41,6 @@ class Database:
             raise DbException
         return response
 
-    def __del__(self):
-        print("Closing....")
-        self.connection.close()
-
 
 db = Database(Config.DATABASE_NAME)
+          

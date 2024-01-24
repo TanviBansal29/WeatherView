@@ -1,7 +1,7 @@
 import os
 from config.config import Config
-from controllers.history import History
-from controllers.user import User
+from handler.history import History
+from handler.user import User
 from helpers.table_helper import TableHelper
 
 
@@ -51,7 +51,10 @@ class AdminHelper:
         user = User()
         user.fetch_all_users()
         data = self.__get_user_history()
-        print(data)
+        if data:
+            TableHelper.print_table(data, type="history")
+        else:
+            print(Config.NO_DATA)
 
     @staticmethod
     def __get_user_by_city():

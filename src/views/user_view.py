@@ -1,7 +1,7 @@
 import os
 from config.config import Config
-from controllers.history import History
-from controllers.weather import Weather
+from handler.history import History
+from handler.weather import Weather
 from helpers.table_helper import TableHelper
 
 

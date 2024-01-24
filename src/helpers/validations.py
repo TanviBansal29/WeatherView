@@ -8,14 +8,18 @@ class Validator:
     """
 
     @staticmethod
+    def validate(reg, user_input):
+        pat = re.compile(reg)
+        mat = re.search(pat, user_input)
+        return mat
+
+    @staticmethod
     def validate_password(password):
         """
             Function to validate password
         """
         reg = Config.PASSWORD_REGEX
-        pat = re.compile(reg)
-        mat = re.search(pat, password)
-        return mat
+        return Validator.validate(reg, password)
 
     @staticmethod
     def validate_zipcode(zipcode):
@@ -23,9 +27,7 @@ class Validator:
             Function to validate zipcode
         """
         reg = Config.ZIPCODE_REGEX
-        pat = re.compile(reg)
-        mat = re.search(pat, zipcode)
-        return mat
+        return Validator.validate(reg, zipcode)
 
     @staticmethod
     def validate_cityname(city):
@@ -33,9 +35,7 @@ class Validator:
             Function to validate cityname
         """
         reg = Config.CITY_REGEX
-        pat = re.compile(reg)
-        mat = re.search(pat, city)
-        return mat
+        return Validator.validate(reg, city)
 
     @staticmethod
     def validate_username(username):
@@ -43,6 +43,4 @@ class Validator:
             Function to validate username
         """
         reg = Config.USERNAME_REGEX
-        pat = re.compile(reg)
-        mat = re.search(pat, username)
-        return mat
+        return Validator.validate(reg, username)

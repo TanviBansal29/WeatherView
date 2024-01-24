@@ -12,6 +12,7 @@ prettytable = "*"
 requests = "*"
 python-dotenv = "*"
 pytest-mock = "*"
+mysql-connector-python = "*"
 
 [dev-packages]
 

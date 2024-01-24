@@ -3,7 +3,7 @@ import logging
 import os
 from pwinput import pwinput
 from config.config import Config
-from controllers.authentication import Authentication
+from handler.authentication import Authentication
 from helpers.validations import Validator
 from views.admin_view import AdminHelper
 from views.user_view import UserHelper
@@ -23,7 +23,9 @@ class MainMenu:
         """
         os.system('cls')
         print(Config.WELCOME_MESSAGE)
+
         logger.debug('Running start menu')
+        
         user_option = input(Config.MENU_PROMPTS)
 
         while user_option != Config.QUIT:

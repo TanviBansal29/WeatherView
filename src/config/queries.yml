@@ -1,41 +1,41 @@
 QUERY_TO_CREATE_USERS_TABLE : |
                     CREATE TABLE IF NOT EXISTS users(
-                    user_id TEXT,
-                    username TEXT,
-                    password TEXT,
-                    city TEXT,
+                    user_id VARCHAR(100),
+                    username VARCHAR(100),
+                    password VARCHAR(100),
+                    city VARCHAR(100),
                     zipcode INTEGER,
-                    role TEXT DEFAULT "user",
+                    role VARCHAR(100) DEFAULT "user",
                     PRIMARY KEY(user_id)
                     )
 
 QUERY_TO_CREATE_SEARCH_HISTORY_TABLE : |
                     CREATE TABLE IF NOT EXISTS search_history (
-                    s_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    user_id TEXT,
-                    searched_for TEXT,
-                    searched_by TEXT,
-                    date_time TEXT,
-                    city TEXT,
+                    s_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+                    user_id VARCHAR(100),
+                    searched_for VARCHAR(100),
+                    searched_by VARCHAR(100),
+                    date_time VARCHAR(100),
+                    city VARCHAR(100),
                     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
                     )
 
-QUERY_TO_INSERT_SEARCH_HISTORY : INSERT INTO search_history (user_id, searched_for, searched_by, date_time, city) VALUES (? ,? ,?, ? ,?)
+QUERY_TO_INSERT_SEARCH_HISTORY : INSERT INTO search_history (user_id, searched_for, searched_by, date_time, city) VALUES (%s ,%s ,%s, %s ,%s)
 
-QUERY_TO_VERIFY_USERNAME : SELECT username FROM users WHERE username = ?
+QUERY_TO_VERIFY_USERNAME : SELECT username FROM users WHERE username = %s
 
-QUERY_TO_VERIFY_USER : SELECT username FROM users WHERE username = ? AND password = ?
+QUERY_TO_VERIFY_USER : SELECT username FROM users WHERE username = %s AND password = %s
 
-QUERY_TO_CREATE_USER : INSERT INTO users (user_id, username, password, city, zipcode) VALUES (?, ?, ?, ?, ?)
+QUERY_TO_CREATE_USER : INSERT INTO users (user_id, username, password, city, zipcode) VALUES (%s, %s, %s, %s, %s)
 
-QUERY_TO_FETCH_ROLE : SELECT user_id, role FROM users WHERE username = ?
+QUERY_TO_FETCH_ROLE : SELECT user_id, role FROM users WHERE username = %s
 
 QUERY_TO_ENALE_FOREIGN_KEY : PRAGMA foreign_keys = 1
 
-QUERY_TO_VIEW_USER : SELECT username, city, zipcode FROM users WHERE username = ?
+QUERY_TO_VIEW_USER : SELECT username, city, zipcode FROM users WHERE username = %s
 
-QUERY_TO_VIEW_USER_BY_PLACE : SELECT user_id, username, city, zipcode FROM users WHERE city = ?
+QUERY_TO_VIEW_USER_BY_PLACE : SELECT user_id, username, city, zipcode FROM users WHERE city = %s
 
-QUERY_TO_VIEW_HISTORY : SELECT date_time, searched_for, searched_by, city FROM search_history WHERE user_id = ?
+QUERY_TO_VIEW_HISTORY : SELECT date_time, searched_for, searched_by, city FROM search_history WHERE user_id = %s
 
 QUERY_TO_FETCH_ALL_USERS : SELECT user_id, username, city, zipcode from users

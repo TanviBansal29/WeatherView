@@ -1,11 +1,11 @@
 from unittest import mock
 from unittest import TestCase
-from controllers.user import User
+from handler.user import User
 
 
 class TestAccount(TestCase):
     def setUp(self):
-        self.obj = User("tanvi", "delhi")
+        self.obj = User("ayushi", "ajmer")
 
     @mock.patch("controllers.user.db")
     def test_fetch_user_data_success(self, mocked_db_object):
