@@ -3,7 +3,7 @@ import logging
 import os
 from pwinput import pwinput
 from config.config import Config
-from handler.authentication import Authentication
+from business.authentication import Authentication
 from helpers.validations import Validator
 from views.admin_view import AdminHelper
 from views.user_view import UserHelper

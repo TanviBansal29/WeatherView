@@ -3,9 +3,10 @@ import hashlib
 import shortuuid
 from db.database import db
 from config.config import Config
+from flask_jwt_extended import create_access_token, create_refresh_token
+from helpers.custom_exceptions import DataAlreadyExists
 
 logger = logging.getLogger('Logging')
-
 
 class Authentication:
     """
@@ -32,9 +33,10 @@ class Authentication:
         logger.debug('Verifying username')
         hashed_password = hashlib.sha256(self.password.encode()).hexdigest()
         data = db.get_item(Config.QUERY_TO_VERIFY_USER, (self.username, hashed_password))
-        if not data:
-            return False
-        return True
+        return data
+        # if not data:
+        #     return False
+        # return True
 
     def __fetch_role_and_id(self):
         """
@@ -42,6 +44,7 @@ class Authentication:
         """
         logger.debug('Fetching role and user_id')
         data = db.get_item(Config.QUERY_TO_FETCH_ROLE, (self.username,))
+        # return data
         if data:
             role = data[1]
             user_id = data[0]
@@ -54,8 +57,8 @@ class Authentication:
         logger.debug('Verifying username')
         data = db.get_item(Config.QUERY_TO_VERIFY_USERNAME, (self.username,))
         if data:
-            return False
-        return True
+            return True
+        return False
 
     def create_account(self):
         """
@@ -66,3 +69,8 @@ class Authentication:
         _id = db.add_item(Config.QUERY_TO_CREATE_USER, (user_id, self.username, self.password, self.city, self.zipcode))
         logger.info("Sucessfully signed up new user with %s." , self.username)
         return _id
+    
+    def generate_token(self,role,user_id):
+        access_token = create_access_token(identity=user_id, fresh = True,additional_claims={"role": role})
+        refresh_token = create_refresh_token(identity = user_id,additional_claims= {"role" : role} )
+        return {"access_token": access_token, "refresh_token": refresh_token}

@@ -1,6 +1,6 @@
 from unittest import mock
 from unittest import TestCase
-from src.handler.weather import Weather
+from src.business.weather import Weather
 
 
 class TestAccount(TestCase):

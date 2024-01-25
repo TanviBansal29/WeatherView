@@ -1,6 +1,6 @@
 from unittest import mock
 from unittest import TestCase
-from handler.authentication import Authentication
+from business.authentication import Authentication
 
 class TestAccount(TestCase):
     def setUp(self):

@@ -1,7 +1,7 @@
 import os
 from config.config import Config
-from handler.history import History
-from handler.user import User
+from business.history import History
+from business.user import User
 from helpers.table_helper import TableHelper
 
 

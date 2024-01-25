@@ -1,6 +1,6 @@
 from unittest import mock
 from unittest import TestCase
-from handler.user import User
+from business.user import User
 
 
 class TestAccount(TestCase):
