@@ -7,6 +7,10 @@ from views.main_menu import MainMenu
 import hashlib
 # from db.database import db
 from routes.auth_routes import blp as AuthRoutes
+from routes.forecast_routes import blp as ForecastRoutes
+from routes.user_routes import blp as UserRoutes
+from routes.weather_routes import blp as WeatherRoutes
+from routes.history_routes import blp as HistoryRoutes
 
 logging.basicConfig(
     format="%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s",
@@ -92,9 +96,11 @@ def create_app():
         )
 
     api.register_blueprint(AuthRoutes,url_prefix="/weather-view")
-    # api.register_blueprint(UserRoutes,url_prefix="/asset-management")
-    # api.register_blueprint(CategoryRoutes,url_prefix="/asset-management")
-    # api.register_blueprint(VendorRoutes,url_prefix="/asset-management")
+    api.register_blueprint(ForecastRoutes,url_prefix="/weather-view")
+    api.register_blueprint(UserRoutes,url_prefix="/weather-view")
+    api.register_blueprint(WeatherRoutes,url_prefix="/weather-view")
+    api.register_blueprint(HistoryRoutes,url_prefix="/weather-view")
+
     # print(app.url_map)
     logger.info('App ended')
     return app

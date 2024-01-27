@@ -29,8 +29,3 @@ class RegisterController:
         
         else:
             raise DataAlreadyExists
-
-        
-
-
-

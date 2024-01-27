@@ -3,8 +3,10 @@ import hashlib
 import shortuuid
 from db.database import db
 from config.config import Config
+from helpers.blocklist import BLOCKLIST
 from flask_jwt_extended import create_access_token, create_refresh_token
 from helpers.custom_exceptions import DataAlreadyExists
+
 
 logger = logging.getLogger('Logging')
 
@@ -12,7 +14,7 @@ class Authentication:
     """
         Class for authentication
     """
-    def __init__(self, username, password=None, city=None, zipcode=None):
+    def __init__(self, username=None, password=None, city=None, zipcode=None):
         self.username = username
         self.password = password
         self.city = city
@@ -74,3 +76,8 @@ class Authentication:
         access_token = create_access_token(identity=user_id, fresh = True,additional_claims={"role": role})
         refresh_token = create_refresh_token(identity = user_id,additional_claims= {"role" : role} )
         return {"access_token": access_token, "refresh_token": refresh_token}
+    
+    def logout(self, token_id):
+        '''Method to logout an authenticated user'''
+
+        BLOCKLIST.add(token_id)
