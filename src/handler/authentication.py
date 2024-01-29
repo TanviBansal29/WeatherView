@@ -4,7 +4,7 @@ import shortuuid
 from db.database import db
 from config.config import Config
 
-logger = logging.getLogger('Logging')
+logger = logging.getLogger(__name__)
 
 
 class Authentication:
@@ -21,7 +21,7 @@ class Authentication:
         """
             Function to get user role
         """
-        logger.info("Logged in succesfully with %s", self.username)
+        logger.info(Config.LOGIN_SUCCESS, self.username)
         role_dict = self.__fetch_role_and_id()
         return role_dict
 
@@ -29,7 +29,7 @@ class Authentication:
         """
             Function to verify user
         """
-        logger.debug('Verifying username')
+        logger.debug(Config.VERIFYING_USERNAME)
         hashed_password = hashlib.sha256(self.password.encode()).hexdigest()
         data = db.get_item(Config.QUERY_TO_VERIFY_USER, (self.username, hashed_password))
         if not data:
@@ -40,18 +40,18 @@ class Authentication:
         """
             Function to fetch role and user_id
         """
-        logger.debug('Fetching role and user_id')
+        logger.debug(Config.FETCH_DATA)
         data = db.get_item(Config.QUERY_TO_FETCH_ROLE, (self.username,))
         if data:
             role = data[1]
             user_id = data[0]
-            return {"role" : role, "user_id":user_id}
+            return {Config.ROLE : role, Config.USER_ID:user_id}
  
     def verify_username(self):
         """
             Function to verify username
         """
-        logger.debug('Verifying username')
+        logger.debug(Config.VERIFYING_USERNAME)
         data = db.get_item(Config.QUERY_TO_VERIFY_USERNAME, (self.username,))
         if data:
             return False
@@ -61,8 +61,8 @@ class Authentication:
         """
             Function to create user account
         """
-        logger.debug('Creating account')
+        logger.debug(Config.CREATE_ACCOUNT)
         user_id = shortuuid.ShortUUID().random(length=5)
         _id = db.add_item(Config.QUERY_TO_CREATE_USER, (user_id, self.username, self.password, self.city, self.zipcode))
-        logger.info("Sucessfully signed up new user with %s." , self.username)
+        logger.info(Config.NEW_USER_SIGNUP , self.username)
         return _id

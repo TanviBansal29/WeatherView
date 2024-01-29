@@ -1,35 +1,18 @@
 import logging
 from views.main_menu import MainMenu
-# from config.config import Config
-import hashlib
-# from db.database import db
+from config.config import Config
 
 logging.basicConfig(
-    format="%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s",
-    datefmt="%d-%M-%Y %H:%M:%S",
-    level=logging.DEBUG,
-    filename='src/logs.log'
+    format = Config.LOGGING_FORMAT,
+    datefmt = Config.DATE_TIME_FORMAT,
+    level = logging.DEBUG,
+    filename = Config.LOGS_LOCATION
 )
 
-# def create_admin():
-#     query = 'INSERT INTO users (user_id, username, password, city, zipcode, role) VALUES (%s, %s, %s, %s, %s, %s)'
-#     password = 'adminadmin'
-#     hashed_password = hashlib.sha256(password.encode()).hexdigest()
-#     data = ('Ayd28Pc', 'admin', hashed_password, 'Noida', '201305', 'admin')
-#     db.add_item(query, data)
-
-
-logger = logging.getLogger("main")
+logger = logging.getLogger(__name__)
 
 if __name__ == "__main__":
-    logger.info('App started')
-    # create_admin()
+    logger.info(Config.APP_START)
     MainMenu.start_menu()
-    logger.info('App ended')
-
-
-
-
-
-
-
+    logger.info(Config.APP_END)
+    

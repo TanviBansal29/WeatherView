@@ -8,7 +8,7 @@ from helpers.validations import Validator
 from views.admin_view import AdminHelper
 from views.user_view import UserHelper
 
-logger = logging.getLogger("Auth")
+logger = logging.getLogger(__name__)
 
 
 class MainMenu:
@@ -24,7 +24,7 @@ class MainMenu:
         os.system('cls')
         print(Config.WELCOME_MESSAGE)
 
-        logger.debug('Running start menu')
+        logger.debug(Config.START_MENU)
         
         user_option = input(Config.MENU_PROMPTS)
 
@@ -46,7 +46,7 @@ class MainMenu:
             Function to verify input username and password
         """
         os.system('cls')
-        logger.debug('Taking login inputs')
+        logger.debug(Config.LOGIN_INPUTS)
         while True:
             username = input(Config.ENTER_USERNAME)
             password = pwinput(Config.ENTER_PASSWORD).strip()
@@ -55,8 +55,8 @@ class MainMenu:
             if is_user_valid:
                 break
             print(Config.INVALID_CREDENTIALS)
-        role = auth.get_role().get("role")
-        user_id = auth.get_role().get("user_id")
+        role = auth.get_role().get(Config.ROLE)
+        user_id = auth.get_role().get(Config.USER_ID)
         if role == Config.ADMIN:
             adminhelper_obj = AdminHelper()
             adminhelper_obj.admin_controller()
@@ -70,7 +70,7 @@ class MainMenu:
             Private helper function to call username and password helpers
         """
         os.system('cls')
-        logger.debug('Taking signup inputs')
+        logger.debug(Config.SIGNIN_INPUTS)
         username = MainMenu.__username_helper()
         hashed_password = MainMenu.__get_password()
         city = MainMenu.__get_cityname()
@@ -84,7 +84,7 @@ class MainMenu:
         """
             Private helper function to get username and verify it
         """
-        logger.debug('Verifying username for signup')
+        logger.debug(Config.VERIFY_USERNAME)
         username = MainMenu.__get_username()
         auth = Authentication(username)
         while not auth.verify_username():
@@ -97,10 +97,10 @@ class MainMenu:
         """
             Function to check if username is unique or not
         """
-        logger.debug('Running get_username')
+        logger.debug(Config.GET_USERNAME)
         username = input(Config.ENTER_USERNAME).strip()
         while not Validator.validate_username(username):
-            username = input("Please enter valid username : ").strip()
+            username = input(Config.VALID_USERNAME).strip()
         return username
 
     @staticmethod
@@ -108,7 +108,7 @@ class MainMenu:
         """
             Function to input password
         """
-        logger.debug('Running get_password')
+        logger.debug(Config.GET_PASSWORD)
         password = pwinput(Config.ENTER_PASSWORD)
         while not Validator.validate_password(password):
             password = pwinput(Config.STRONG_PASSWORD_PROMPT)
@@ -120,10 +120,10 @@ class MainMenu:
         """
             Function to input cityname
         """
-        logger.debug('Running get_cityname')
+        logger.debug(Config.GET_CITYNAME)
         city = input(Config.ENTER_CITY).lower()
         while not Validator.validate_cityname(city):
-            city = input("Please enter valid city name : ").lower()
+            city = input(Config.INVALID_CITYNAME).lower()
         return city
 
     @staticmethod
@@ -131,8 +131,8 @@ class MainMenu:
         """
             Function to get zipcode
         """
-        logger.debug('Running get_zipcode')
+        logger.debug(Config.GET_ZIPCODE_START)
         zipcode = input(Config.ENTER_ZIPCODE)
         while not Validator.validate_zipcode(zipcode):
-            zipcode = input("Please enter a valid zipcode: ")
+            zipcode = input(Config.INVALID_ZIPCODE)
         return zipcode

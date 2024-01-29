@@ -58,7 +58,7 @@ class UserHelper:
         weather_obj = Weather(city_name=city_name)
         data = weather_obj.get_weather_by_city()
         if data:
-            TableHelper.print_table([data], type="weather")
+            TableHelper.print_table([data], type=Config.TYPE_WEATHER)
             history_obj = History(self.user_id, city_name)
             history_obj.insert_history()
         else:
@@ -73,7 +73,7 @@ class UserHelper:
         days = int(input(Config.ENTER_DAYS))
         data = weather_obj.get_forecast(days)
         if data:
-            TableHelper.print_table(data, type="forecast")
+            TableHelper.print_table(data, type=Config.TYPE_FORECAST)
             history_obj = History(self.user_id, city_name)
             history_obj.insert_history()
         else:
@@ -86,7 +86,7 @@ class UserHelper:
         history_obj = History(self.user_id)
         data = history_obj.view_history()
         if data:
-            TableHelper.print_table(data, type="history")
+            TableHelper.print_table(data, type=Config.TYPE_HISTORY)
         else:
             print(Config.NO_DATA)
 
@@ -99,8 +99,8 @@ class UserHelper:
         weather_obj = Weather(lat=lat, lon=lon)
         data = weather_obj.get_weather_by_coordinates()
         if data:
-            TableHelper.print_table([data], type="weather")
-            history_obj = History(self.user_id, "-")
+            TableHelper.print_table([data], type=Config.TYPE_WEATHER)
+            history_obj = History(self.user_id, Config.BLANK)
             history_obj.insert_history()
         else:
             print(Config.NO_DATA)

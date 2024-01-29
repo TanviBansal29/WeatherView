@@ -1,0 +1,137 @@
+LOGGING_FORMAT : "[%(asctime)s] %(levelname)s [%(name)s.%(funcName)s:%(lineno)d] %(message)s"
+
+DATE_TIME_FORMAT : "%d-%M-%Y %H:%M:%S"
+
+LOGS_LOCATION : "src/logs.log"
+
+APP_START : "App started"
+
+APP_END : "App ended"
+
+START_MENU : "Running start menu"
+
+LOGIN_INPUTS : "Taking login inputs"
+
+ROLE : "role"
+
+GET_ZIPCODE_START : 'Running get_zipcode'
+
+INVALID_ZIPCODE : "Please enter a valid zipcode: "
+
+GET_CITYNAME : "Running get_cityname"
+
+INVALID_CITYNAME : "Please enter valid city name : "
+
+USER_ID : "user_id"
+
+SIGNIN_INPUTS : "Taking signup inputs"
+
+VERIFY_USERNAME : "Verifying username for signup"
+
+GET_USERNAME : 'Running get_username'
+
+VALID_USERNAME : "Please enter valid username : " 
+
+GET_PASSWORD : 'Running get_password'
+
+TYPE_WEATHER  : "weather"
+
+TYPE_FORECAST : "forecast"
+
+TYPE_HISTORY : "history"
+
+TYPE_CITY : "city"
+
+BLANK : "-"
+
+TYPE_USERNAME : "username"
+
+CITY_HEADERS : 
+  - "user_id"
+  - "username"
+  - "city"
+  - "zipcode"
+
+USERNAME_HEADERS : 
+  - "username"
+  - "city"
+  - "zipcode"
+
+FORECAST_HEADER : 
+  - 'Date'
+  - 'Max temp'
+  - 'Min temp'
+  - 'Windspeed'
+  - 'Sunrise'
+  - 'Sunset'
+  
+WEATHER_HEADER : 
+  - 'Max temp'
+  - 'Min temp'
+  - 'Windspeed'
+  - 'Sunrise'
+  - 'Sunset'
+
+HISTORY_HEADER : 
+  - "date time"
+  - "searched_for"
+  - "searched_by"
+  - "city_name"
+
+NEW_USER_SIGNUP: "Sucessfully signed up new user with %s."
+
+LOGIN_SUCCESS : "Logged in succesfully with %s"
+
+VERIFYING_USERNAME : 'Verifying username'
+
+FETCH_DATA : 'Fetching role and user_id'
+
+CREATE_ACCOUNT : 'Creating account'
+
+LOGGING : 'Logging'
+
+WEATHER_DATA_LOG : 'Fetching weather data'
+
+FETCH_USER_DATA : "Fetching data for user: %s"
+
+FETCH_USER_DATA_IN_CITY : "Fetching data for users in city: %s"
+
+FETCH_ALL_USER : "Fetching all users"
+
+WEATHER_URL : "https://weather-by-api-ninjas.p.rapidapi.com/v1/weather"
+
+FORECAST_URL : "https://weatherapi-com.p.rapidapi.com/forecast.json"
+
+SECRET_KEY : "SECRET_API_KEY_WEATHER"
+
+API_HOST : "weather-by-api-ninjas.p.rapidapi.com"
+
+SECRET_KEY_FORECAST : "SECRET_API_KEY_FORECAST"
+
+FORECAST_API_HOST : "weatherapi-com.p.rapidapi.com"
+
+USERS_SUCCESS_LOG : "All users fetched successfully"
+
+X_RAPIDAPI_HOST : "X-RapidAPI-Host"
+
+X_RAPIDAPI_KEY : "X-RapidAPI-Key"
+
+SUNSET: "sunset"    
+
+SUNRISE: "sunrise"              
+
+MAXTEMP: "max_temp"              
+
+HISTORY_VIEW : "Viewing history for user_id: %s"
+
+INSERTED_HISTORY : "History inserted for user_id: %s"
+
+INSERTING_HISTORY: "Inserting history for user_id: %s"
+
+GET_WEATHER_CITY : "Getting weather data for city: %s"
+
+GET_WEATHER_SUCCESS : "Weather data retrieved successfully for city: %s"
+
+GET_WEATHER_COORDINATES: "Getting weather data for coordinates (lat: %s, lon: %s)"
+
+GET_WEATHER_COORDINATES_SUCCESS : "Weather data retrieved successfully for coordinates (lat: %s, lon: %s)"

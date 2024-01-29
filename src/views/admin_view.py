@@ -27,7 +27,7 @@ class AdminHelper:
     def __get_user_data_helper(self):
         data = self.__get_user_data()
         if data:
-            TableHelper.print_table(data, type="username")
+            TableHelper.print_table(data, type=Config.TYPE_USERNAME)
         else:
             print(Config.NO_DATA)
 
@@ -43,7 +43,7 @@ class AdminHelper:
         user.fetch_all_users()
         data = self.__get_user_by_city()
         if data:
-            TableHelper.print_table(data, type="city")
+            TableHelper.print_table(data, type=Config.TYPE_CITY)
         else:
             print(Config.NO_DATA)
 
@@ -52,7 +52,7 @@ class AdminHelper:
         user.fetch_all_users()
         data = self.__get_user_history()
         if data:
-            TableHelper.print_table(data, type="history")
+            TableHelper.print_table(data, type=Config.TYPE_HISTORY)
         else:
             print(Config.NO_DATA)
 

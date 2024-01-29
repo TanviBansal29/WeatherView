@@ -57,6 +57,63 @@ class Config:
     USER_PROMPTS = None
     ADMIN_PROMPTS = None
     USER_VIEW_PROMPTS = None
+    LOGGING_FORMAT = None
+    DATE_TIME_FORMAT = None
+    LOGS_LOCATION = None
+    APP_START = None
+    APP_END = None
+    START_MENU = None
+    ROLE = None
+    GET_ZIPCODE_START = None
+    USER_ID : None
+    INVALID_ZIPCODE = None
+    SIGNIN_INPUTS = None
+    VERIFY_USERNAME = None
+    GET_CITYNAME = None
+    INVALID_CITYNAME = None
+    GET_USERNAME = None
+    VALID_USERNAME = None
+    GET_PASSWORD = None
+    TYPE_WEATHER = None
+    TYPE_FORECAST = None
+    TYPE_HISTORY = None
+    BLANK = None
+    TYPE_USERNAME = None
+    TYPE_CITY = None
+    USERNAME_HEADERS = None
+    CITY_HEADERS = None
+    FORECAST_HEADER = None
+    WEATHER_HEADER = None
+    HISTORY_HEADER = None
+    NEW_USER_SIGNUP = None
+    LOGIN_SUCCESS = None
+    VERIFYING_USERNAME = None
+    CREATE_ACCOUNT = None
+    FETCH_DATA = None
+    LOGGING = None
+    WEATHER_DATA_LOG = None
+    FETCH_USER_DATA = None
+    FETCH_USER_DATA_IN_CITY = None
+    FETCH_ALL_USER = None
+    WEATHER_URL = None
+    FORECAST_URL = None
+    SECRET_KEY = None
+    API_HOST = None
+    SECRET_KEY_FORECAST = None
+    FORECAST_API_HOST = None
+    X_RAPIDAPI_HOST = None
+    X_RAPIDAPI_KEY = None
+    USERS_SUCCESS_LOG = None
+    SUNSET= None              
+    SUNRISE= None              
+    MAXTEMP= None
+    HISTORY_VIEW = None
+    INSERTED_HISTORY = None
+    INSERTING_HISTORY = None
+    GET_WEATHER_CITY = None
+    GET_WEATHER_SUCCESS = None
+    GET_WEATHER_COORDINATES = None
+    GET_WEATHER_COORDINATES_SUCCESS = None
 
     @classmethod
     def load_print_statements(cls):
@@ -127,7 +184,71 @@ class Config:
             cls.ADMIN_PROMPTS = data['ADMIN_PROMPTS']
             cls.USER_VIEW_PROMPTS = data['USER_VIEW_PROMPTS']
 
+    @classmethod
+    def load_constants(cls):
+        with open('src\\config\\constants.yml', 'r') as f:
+            data = yaml.safe_load(f)
+            cls.LOGGING_FORMAT = data['LOGGING_FORMAT']
+            cls.DATE_TIME_FORMAT = data['DATE_TIME_FORMAT']
+            cls.LOGS_LOCATION = data['LOGS_LOCATION']
+            cls.APP_START = data['APP_START']
+            cls.APP_END = data['APP_END']
+            cls.START_MENU = data['START_MENU']
+            cls.LOGIN_INPUTS = data['LOGIN_INPUTS']
+            cls.ROLE = data['ROLE']
+            cls.USER_ID = data['USER_ID']
+            cls.GET_ZIPCODE_START = data['GET_ZIPCODE_START']
+            cls.INVALID_ZIPCODE = data['INVALID_ZIPCODE']
+            cls.SIGNIN_INPUTS = data['SIGNIN_INPUTS']
+            cls.VERIFY_USERNAME = data['VERIFY_USERNAME']
+            cls.GET_CITYNAME = data['GET_CITYNAME']
+            cls.INVALID_CITYNAME = data['INVALID_CITYNAME']
+            cls.GET_USERNAME = data['GET_USERNAME']
+            cls.VALID_USERNAME = data['VALID_USERNAME']
+            cls.GET_PASSWORD = data['GET_PASSWORD']
+            cls.TYPE_WEATHER = data['TYPE_WEATHER']
+            cls.TYPE_FORECAST = data['TYPE_FORECAST']
+            cls.TYPE_HISTORY = data['TYPE_HISTORY']
+            cls.BLANK = data['BLANK']
+            cls.TYPE_USERNAME = data['TYPE_USERNAME']
+            cls.TYPE_CITY = data['TYPE_CITY']
+            cls.USERNAME_HEADERS = data['USERNAME_HEADERS']
+            cls.CITY_HEADERS = data['CITY_HEADERS']
+            cls.WEATHER_HEADER = data['WEATHER_HEADER']
+            cls.FORECAST_HEADER = data['FORECAST_HEADER']
+            cls.HISTORY_HEADER = data['HISTORY_HEADER']
+            cls.NEW_USER_SIGNUP = data['NEW_USER_SIGNUP']
+            cls.LOGIN_SUCCESS = data['LOGIN_SUCCESS']
+            cls.VERIFYING_USERNAME = data['VERIFY_USERNAME']
+            cls.CREATE_ACCOUNT = data['CREATE_ACCOUNT']
+            cls.FETCH_DATA = data['FETCH_DATA']
+            cls.LOGGING = data['LOGGING']
+            cls.WEATHER_DATA_LOG = data['WEATHER_DATA_LOG']
+            cls.FETCH_USER_DATA = data['FETCH_USER_DATA ']
+            cls.FETCH_USER_DATA_IN_CITY = data['FETCH_USER_DATA_IN_CITY']
+            cls.FETCH_ALL_USER = data['FETCH_ALL_USER']
+            cls.WEATHER_URL = data['WEATHER_URL']
+            cls.FORECAST_URL = data['FORECAST_URL']
+            cls.SECRET_KEY = data['SECRET_KEY']
+            cls.API_HOST = data['API_HOST']
+            cls.SECRET_KEY_FORECAST = data['SECRET_KEY_FORECAST']
+            cls.FORECAST_API_HOST = data['FORECAST_API_HOST']
+            cls.X_RAPIDAPI_HOST = data['X_RAPIDAPI_HOST']
+            cls.X_RAPIDAPI_KEY = data['X_RAPIDAPI_KEY']
+            cls.USERS_SUCCESS_LOG = data['USERS_SUCCESS_LOG']
+            cls.SUNSET = data['SUNSET']
+            cls.SUNRISE = data['SUNRISE']
+            cls.MAXTEMP = data['MAXTEMP']
+            cls.HISTORY_VIEW = data['HISTORY_VIEW']
+            cls.INSERTED_HISTORY = data['INSERTED_HISTORY']
+            cls.INSERTING_HISTORY = data['INSERTING_HISTORY']
+            cls.GET_WEATHER_CITY = data['GET_WEATHER_CITY']
+            cls.GET_WEATHER_SUCCESS = data['GET_WEATHER_SUCCESS']
+            cls.GET_WEATHER_COORDINATES = data['GET_WEATHER_COORDINATES']
+            cls.GET_WEATHER_COORDINATES_SUCCESS = data['GET_WEATHER_COORDINATES_SUCCESS']
+
 
 Config.load_print_statements()
 Config.load_queries()
 Config.load_prompts()
+Config.load_constants()
