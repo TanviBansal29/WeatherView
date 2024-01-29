@@ -33,6 +33,7 @@ logger = logging.getLogger("main")
 def create_app():
 
     app = Flask(__name__)
+    app.json.sort_keys = False
     logger.info('App started')
 
     app.config["PROPAGATE_EXCEPTIONS"] = True
