@@ -23,13 +23,13 @@ class Weather:
         query_data = {Config.LAT: self.lat, Config.LON: self.lon}
         api = ApiClient()
         data = api.get_data_by_city(query_data)
-        logger.info(, self.lat, self.lon)
+        logger.info(Config.GET_WEATHER_COORDINATES_SUCCESS, self.lat, self.lon)
         return data
 
     def get_forecast(self, days):
-        logger.debug("Getting forecast data for city: %s, days: %s", self.city_name, days)
+        logger.debug(Config.GET_FORECAST, self.city_name, days)
         query_data = {Config.CITY: self.city_name, Config.DAYS: days}
         api = ApiClient()
         data = api.forecast_info(query_data)
-        logger.info("Forecast data retrieved successfully for city: %s, days: %s", self.city_name, days)
+        logger.info(Config.GET_FORECAST_SUCCESS, self.city_name, days)
         return data

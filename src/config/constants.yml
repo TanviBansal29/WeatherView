@@ -135,3 +135,7 @@ GET_WEATHER_SUCCESS : "Weather data retrieved successfully for city: %s"
 GET_WEATHER_COORDINATES: "Getting weather data for coordinates (lat: %s, lon: %s)"
 
 GET_WEATHER_COORDINATES_SUCCESS : "Weather data retrieved successfully for coordinates (lat: %s, lon: %s)"
+
+GET_FORECAST : "Getting forecast data for city: %s, days: %s"
+
+GET_FORECAST_SUCCESS : "Forecast data retrieved successfully for city: %s, days: %s"

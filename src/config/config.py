@@ -114,6 +114,8 @@ class Config:
     GET_WEATHER_SUCCESS = None
     GET_WEATHER_COORDINATES = None
     GET_WEATHER_COORDINATES_SUCCESS = None
+    GET_FORECAST = None
+    GET_FORECAST_SUCCESS = None
 
     @classmethod
     def load_print_statements(cls):
@@ -246,6 +248,8 @@ class Config:
             cls.GET_WEATHER_SUCCESS = data['GET_WEATHER_SUCCESS']
             cls.GET_WEATHER_COORDINATES = data['GET_WEATHER_COORDINATES']
             cls.GET_WEATHER_COORDINATES_SUCCESS = data['GET_WEATHER_COORDINATES_SUCCESS']
+            cls.GET_FORECAST = data['GET_FORECAST']
+            cls.GET_FORECAST_SUCCESS = data['GET_FORECAST_SUCCESS']
 
 
 Config.load_print_statements()
