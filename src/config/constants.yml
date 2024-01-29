@@ -139,3 +139,35 @@ GET_WEATHER_COORDINATES_SUCCESS : "Weather data retrieved successfully for coord
 GET_FORECAST : "Getting forecast data for city: %s, days: %s"
 
 GET_FORECAST_SUCCESS : "Forecast data retrieved successfully for city: %s, days: %s"
+
+CITY_WEATHER_DATA : "Weather data fetched successfully for city"
+
+CITY_WEATHER_DATA_ERROR : "Error fetching weather data for city"
+
+FORECAST_WEATHER_DATA : "Fetching weather forecast data"
+
+WEATHER_DATA_CITY : "Fetching weather data for city."
+
+WEATHER_FORECAST_SUCCESS : "Weather forecast data fetched successfully"
+
+WEATHER_FORECAST_ERROR : "Error fetching weather forecast data"
+
+PARSE_FORECAST_RESPONSE : "Parsing forecast response"
+
+FORECAST_DAY : "forecastday"
+
+DATE : "date"
+
+DAY : "day"
+
+ASTRO : "astro"
+
+PARSE_WEATHER_RESPONSE : "Parsing weather response"
+
+PARSE_ASTRO_DATA : "Parsing astro data"
+
+TIME_FORMAT : '%H:%M:%S'
+
+AM : ' A.M.'
+
+PM : ' P.M.'

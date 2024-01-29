@@ -1,6 +1,5 @@
 import yaml
 
-
 class Config:
     SIGNUP_PROMPT = None
     WELCOME_MESSAGE = None
@@ -116,6 +115,22 @@ class Config:
     GET_WEATHER_COORDINATES_SUCCESS = None
     GET_FORECAST = None
     GET_FORECAST_SUCCESS = None
+    CITY_WEATHER_DATA = None
+    CITY_WEATHER_DATA_ERROR = None
+    FORECAST_WEATHER_DATA = None
+    WEATHER_FORECAST_SUCCESS = None
+    WEATHER_FORECAST_ERROR = None
+    PARSE_FORECAST_RESPONSE = None
+    FORECAST_DAY = None
+    DATE = None
+    DAY = None
+    ASTRO = None
+    PARSE_WEATHER_RESPONSE = None
+    PARSE_ASTRO_DATA = None
+    TIME_FORMAT = None
+    AM = None
+    PM = None
+    WEATHER_DATA_CITY = None
 
     @classmethod
     def load_print_statements(cls):
@@ -250,6 +265,22 @@ class Config:
             cls.GET_WEATHER_COORDINATES_SUCCESS = data['GET_WEATHER_COORDINATES_SUCCESS']
             cls.GET_FORECAST = data['GET_FORECAST']
             cls.GET_FORECAST_SUCCESS = data['GET_FORECAST_SUCCESS']
+            cls.CITY_WEATHER_DATA = data['CITY_WEATHER_DATA']
+            cls.CITY_WEATHER_DATA_ERROR = data['CITY_WEATHER_DATA_ERROR']
+            cls.FORECAST_WEATHER_DATA = data['FORECAST_WEATHER_DATA']
+            cls.WEATHER_FORECAST_SUCCESS = data['WEATHER_FORECAST_SUCCESS']
+            cls.WEATHER_FORECAST_ERROR = data['WEATHER_FORECAST_ERROR']
+            cls.PARSE_FORECAST_RESPONSE = data['PARSE_FORECAST_RESPONSE']
+            cls.FORECAST_DAY = data['FORECAST_DAY']
+            cls.DATE = data['DATE']
+            cls.DAY = data['DAY']
+            cls.ASTRO = data['ASTRO']
+            cls.PARSE_WEATHER_RESPONSE = data['PARSE_WEATHER_RESPONSE']
+            cls.PARSE_ASTRO_DATA = data['PARSE_ASTRO_DATA']
+            cls.TIME_FORMAT = data['TIME_FORMAT']
+            cls.AM = data['AM']
+            cls.PM = data['PM']
+            cls.WEATHER_DATA_CITY = data['WEATHER_DATA_CITY']
 
 
 Config.load_print_statements()
