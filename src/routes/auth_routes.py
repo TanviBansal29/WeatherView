@@ -41,7 +41,7 @@ class Logout(MethodView):
         logout_obj = LogoutController(jti)
         return logout_obj.logout()
     
-
+@blp.route('/refresh')
 class Refresh(MethodView):
     'Route to get a non fresh access token'
 
