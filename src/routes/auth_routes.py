@@ -5,6 +5,7 @@ from schemas.schemas import LoginSchema, UserRegisterSchema
 from controller.auth.login import LoginController
 from controller.auth.register import RegisterController
 from controller.auth.logout import LogoutController
+from controller.auth.refresh import RefreshController
 
 blp = Blueprint("Authentication", __name__, description="Operations on authentication task")
 
@@ -18,7 +19,6 @@ class Login(MethodView):
         login_obj = LoginController(login_data)
         return login_obj.login()
 
-
 @blp.route("/register")
 class Register(MethodView):
     'Route to register a new user'
@@ -28,7 +28,6 @@ class Register(MethodView):
         'Register a new user'
         register_obj = RegisterController(register_data)
         return register_obj.register()
-
 
 @blp.route('/logout')
 class Logout(MethodView):
@@ -45,9 +44,26 @@ class Logout(MethodView):
 class Refresh(MethodView):
     'Route to get a non fresh access token'
 
+    @jwt_required(refresh=True)
     def post(self):
         'Getting a non fresh access token from refresh token'
-        pass
-        return 
+        claims = get_jwt()
+        user_id = claims.get("sub")
+        role = claims.get("role")
+        refresh_obj = RefreshController(user_id, role)
+        return refresh_obj.refresh()
+
+
+# {
+#     "fresh": false,
+#     "iat": 1706636181,
+#     "jti": "e86cbf11-4017-4bbd-a1dc-0ebe1439f7dd",
+#     "type": "refresh",
+#     "sub": "6AVX3",
+#     "nbf": 1706636181,
+#     "csrf": "ddadd082-4b17-4fc5-8d52-fa630d653309",
+#     "exp": 1709228181,
+#     "role": "user"
+# }
         
         

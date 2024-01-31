@@ -1,5 +1,5 @@
 from business.authentication import Authentication
-from helpers.custom_exceptions import DataAlreadyExists
+from helpers.custom_exceptions import DataAlreadyExists, DataNotFound
 
 class RegisterController:
     '''
@@ -11,21 +11,25 @@ class RegisterController:
         self.password = register_data['password']
         self.city = register_data['city']
         self.zipcode = register_data['zipcode']
-        self.obj_authentication_business = Authentication(self.username, self.password, self.city, self.zipcode)
+        self.obj_auth_business = Authentication(self.username, self.password, self.city, self.zipcode)
 
     def register(self):
         'Method to register new user only (not admin)'
         
-        result = self.obj_authentication_business.verify_username()
-        
-        if not result:
-            self.obj_authentication_business.create_account()
+        try:
+            result = self.obj_auth_business.verify_username()
             
-            response = {
-                "status_code": 201,
-                "message": "SIGNED UP SUCCESSFULLY"
-            }
-            return response
-        
-        else:
-            raise DataAlreadyExists
+            if not result:
+                self.obj_auth_business.create_account()
+                
+                
+                response = {
+                    "status_code": 201,
+                    "message": "SIGNED UP SUCCESSFULLY"
+                }
+                return response
+        except DataAlreadyExists as e:
+            return {"status" : 409 , "message": str(e)},409
+
+        # else:
+        #     raise DataAlreadyExists

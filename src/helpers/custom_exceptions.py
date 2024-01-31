@@ -6,3 +6,6 @@ class DataAlreadyExists(Exception):
 
 class DuplicateEntryError(Exception):
     pass
+
+class DataNotFound(Exception):
+    pass

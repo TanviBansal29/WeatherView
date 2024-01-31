@@ -5,7 +5,7 @@ from db.database import db
 from config.config import Config
 from helpers.blocklist import BLOCKLIST
 from flask_jwt_extended import create_access_token, create_refresh_token
-from helpers.custom_exceptions import DataAlreadyExists
+from helpers.custom_exceptions import DataAlreadyExists, DataNotFound
 
 
 logger = logging.getLogger('Logging')
@@ -59,8 +59,8 @@ class Authentication:
         logger.debug('Verifying username')
         data = db.get_item(Config.QUERY_TO_VERIFY_USERNAME, (self.username,))
         if data:
-            return True
-        return False
+            raise DataAlreadyExists("Enter new username")
+        return 
 
     def create_account(self):
         """
@@ -68,15 +68,28 @@ class Authentication:
         """
         logger.debug('Creating account')
         user_id = shortuuid.ShortUUID().random(length=5)
-        _id = db.add_item(Config.QUERY_TO_CREATE_USER, (user_id, self.username, self.password, self.city, self.zipcode))
+        hashed_password = hashlib.sha256(self.password.encode()).hexdigest()
+        _id = db.add_item(Config.QUERY_TO_CREATE_USER, (user_id, self.username, hashed_password, self.city, self.zipcode))
         logger.info("Sucessfully signed up new user with %s." , self.username)
         return _id
     
     def generate_token(self,role,user_id):
+        'Method to generate access token and refresh token'
+
         access_token = create_access_token(identity=user_id, fresh = True,additional_claims={"role": role})
         refresh_token = create_refresh_token(identity = user_id,additional_claims= {"role" : role} )
         return {"access_token": access_token, "refresh_token": refresh_token}
     
+    def refresh(self,user_id, role):
+        'Method to generate refresh token'
+
+        new_access_token = create_access_token(
+            identity = user_id,
+            fresh = False,
+            additional_claims = {"role": role}
+            )
+        return new_access_token
+
     def logout(self, token_id):
         '''Method to logout an authenticated user'''
 

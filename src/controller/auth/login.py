@@ -11,19 +11,19 @@ class LoginController:
     def __init__(self,login_data):
         self.username = login_data['username']
         self.password = login_data['password']
-        self.obj_authentication_business = Authentication(self.username,self.password)
+        self.obj_auth_business = Authentication(self.username,self.password)
 
     def login(self): 
         '''Method for user login'''
         try:
             # username, password = user_data.values()
-            result = self.obj_authentication_business.verify_user()
+            result = self.obj_auth_business.verify_user()
 
             if result:
-                data = self.obj_authentication_business.get_role()
+                data = self.obj_auth_business.get_role()
                 role = data["role"]
                 user_id = data["user_id"]
-                token = self.obj_authentication_business.generate_token(role, user_id)
+                token = self.obj_auth_business.generate_token(role, user_id)
 
                 response = {
                     "access_token": token["access_token"],

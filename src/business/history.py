@@ -1,6 +1,7 @@
 from datetime import datetime
 from config.config import Config
 from db.database import db
+from helpers.custom_exceptions import DataNotFound
 
 
 class History:
@@ -16,6 +17,8 @@ class History:
             Function to view user history
         """
         data = db.get_items(Config.QUERY_TO_VIEW_HISTORY, (self.user_id,))
+        if not data:
+            raise DataNotFound("No data found")
         return data
 
     def insert_history(self):
@@ -29,4 +32,3 @@ class History:
         query = Config.QUERY_TO_INSERT_SEARCH_HISTORY
         _id = db.add_item(query, (self.user_id,searched_for, searched_by, date_time, self.city))
         return _id
-    

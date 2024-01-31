@@ -105,3 +105,5 @@ def create_app():
     # print(app.url_map)
     logger.info('App ended')
     return app
+
+create_app()
