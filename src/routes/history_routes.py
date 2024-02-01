@@ -30,7 +30,6 @@ class UserHistoryMe(MethodView):
     'Route to get logged in user search history'
 
     @access_control("user")
-    @jwt_required()
     def get(self):
         '''
             Get own search history
@@ -39,6 +38,4 @@ class UserHistoryMe(MethodView):
         user_id = claims.get("sub")
         history_obj = HistoryController(user_id)
         return history_obj.view_user_history()
-
-
-
+    

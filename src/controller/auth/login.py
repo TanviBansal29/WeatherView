@@ -16,29 +16,13 @@ class LoginController:
     def login(self): 
         '''Method for user login'''
         try:
-            # username, password = user_data.values()
             result = self.obj_auth_business.verify_user()
 
             if result:
                 data = self.obj_auth_business.get_role()
                 role = data["role"]
                 user_id = data["user_id"]
-                token = self.obj_auth_business.generate_token(role, user_id)
-
-                response = {
-                    "access_token": token["access_token"],
-                    "refresh_token": token["refresh_token"],
-                    "message": "LOGGED IN SUCCESSFULLY"
-                }
-
-                return response
-        except InvalidCredentials:
-            abort(401, "Invalid user credentials were provided")
-
-
-
-
-
-        
-
-    
+                return self.obj_auth_business.generate_token(role, user_id)
+            
+        except InvalidCredentials as e:
+            return {"status" : 401 , "message": str(e)},401    

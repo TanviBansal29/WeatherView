@@ -15,7 +15,6 @@ class ForecastData(MethodView):
         '''
             Get weather forecast by city name and number of days
         '''
-        # user_id = request.args.get("user_id")
         city = request.args.get("city")
         days = request.args.get("days")
         forecast_obj = ForecastController(city, days)

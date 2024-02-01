@@ -31,6 +31,4 @@ class UsersList(MethodView):
         city = request.args.get("place")
         user_obj = UserController(city=city)
         return user_obj.view_users()
-        
-
-
+    

@@ -5,7 +5,7 @@ from db.database import db
 from config.config import Config
 from helpers.blocklist import BLOCKLIST
 from flask_jwt_extended import create_access_token, create_refresh_token
-from helpers.custom_exceptions import DataAlreadyExists, DataNotFound
+from helpers.custom_exceptions import DataAlreadyExists, DataNotFound, InvalidCredentials
 
 
 logger = logging.getLogger('Logging')
@@ -35,10 +35,10 @@ class Authentication:
         logger.debug('Verifying username')
         hashed_password = hashlib.sha256(self.password.encode()).hexdigest()
         data = db.get_item(Config.QUERY_TO_VERIFY_USER, (self.username, hashed_password))
+        if not data:
+            raise InvalidCredentials("Invalid Credentials")
         return data
-        # if not data:
-        #     return False
-        # return True
+
 
     def __fetch_role_and_id(self):
         """
@@ -46,7 +46,6 @@ class Authentication:
         """
         logger.debug('Fetching role and user_id')
         data = db.get_item(Config.QUERY_TO_FETCH_ROLE, (self.username,))
-        # return data
         if data:
             role = data[1]
             user_id = data[0]
@@ -78,7 +77,7 @@ class Authentication:
 
         access_token = create_access_token(identity=user_id, fresh = True,additional_claims={"role": role})
         refresh_token = create_refresh_token(identity = user_id,additional_claims= {"role" : role} )
-        return {"access_token": access_token, "refresh_token": refresh_token}
+        return {"access_token": access_token, "refresh_token": refresh_token , "message": "LOGGED IN SUCCESSFULLY"}
     
     def refresh(self,user_id, role):
         'Method to generate refresh token'

@@ -19,9 +19,7 @@ class CurrentWeatherPlace(MethodView):
         '''
             Get current weather information by place name
         '''
-        # user_id = request.args.get("user_id")
         city = request.args.get("placename")
-        # days = request.args.get("days")
         weather_obj = WeatherController(city)
         return weather_obj.view_current_weather_by_place()
     
@@ -34,8 +32,8 @@ class CurrentWeatherCoordinates(MethodView):
         '''
             Get current weather information by place name
         '''
-        # user_id = request.args.get("user_id")
         lat = request.args.get("lat")
         lon = request.args.get("lon")
         weather_obj = WeatherController(lat=lat, lon=lon)
         return weather_obj.view_current_weather_by_coordinates()
+    

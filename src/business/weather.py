@@ -32,6 +32,3 @@ class Weather:
         if not data:
             raise DataNotFound("No data found")
         return data
-    
-    
-        # query_data = {Config.CITY: self.city_name, Config.DAYS: days}
