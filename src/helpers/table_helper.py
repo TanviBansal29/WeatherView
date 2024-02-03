@@ -1,22 +1,22 @@
 from tabulate import tabulate as tb
-
 from config.config import Config
 
 
 class TableHelper:
     """
-        Table Helper class to tabulate and print table
+    Table Helper class to tabulate and print table
     """
+
     USERNAME_HEADERS = ("username", "city", "zipcode")
     CITY_HEADERS = ("user_id", "username", "city", "zipcode")
     HISTORY_HEADERS = ("date time", "searched_for", "searched_by", "city_name")
-    FORECAST_HEADER = ('Date', 'Max temp', 'Min temp', 'Windspeed', 'Sunrise', 'Sunset')
-    WEATHER_HEADER = ('Max temp', 'Min temp', 'Windspeed', 'Sunrise', 'Sunset')
+    FORECAST_HEADER = ("Date", "Max temp", "Min temp", "Windspeed", "Sunrise", "Sunset")
+    WEATHER_HEADER = ("Max temp", "Min temp", "Windspeed", "Sunrise", "Sunset")
 
     @staticmethod
     def print_table(data, type):
         """
-            Function to print table
+        Function to print table
         """
 
         if type == "username":

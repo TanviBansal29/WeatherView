@@ -1,29 +1,26 @@
-MENU_PROMPTS : | 
+MENU_PROMPTS: |
   Press:
       1. Login
       2. SignUp
       (Press q to quit)
-  Enter your choice : 
- 
+  Enter your choice :
 
-ADMIN_PROMPTS : |
+ADMIN_PROMPTS: |
   1. View data by user
   2. View data by place
   3. View search history
   (Press q for previous menu)
 
-  Enter your choice : 
+  Enter your choice :
 
-
-USER_PROMPTS : |
+USER_PROMPTS: |
   1. View by place
   2. View by coordinates
   (Press q for previous menu)
 
   Enter your choice :
 
-
-USER_VIEW_PROMPTS : |
+USER_VIEW_PROMPTS: |
   1. Get Weather Info
   2. Get Weather forecast 
   3. View Search history

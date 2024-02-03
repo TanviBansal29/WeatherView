@@ -1,80 +1,80 @@
-WELCOME_MESSAGE : "WELCOME TO WeatherView! \n"
+WELCOME_MESSAGE: "WELCOME TO WeatherView! \n"
 
-ENTER_USERNAME : "\nEnter username: "
+ENTER_USERNAME: "\nEnter username: "
 
-ENTER_PASSWORD : "Enter password: "
+ENTER_PASSWORD: "Enter password: "
 
-ENTER_CITY : "Enter your city: "
+ENTER_CITY: "Enter your city: "
 
-ENTER_ZIPCODE : "Enter zipcode: "
+ENTER_ZIPCODE: "Enter zipcode: "
 
-DATABASE_NAME : "src/db/data.db"
+DATABASE_NAME: "src/db/data.db"
 
-LOGIN_ADMIN : "LOGGED IN AS ADMIN...\n"
+LOGIN_ADMIN: "LOGGED IN AS ADMIN...\n"
 
-LOGIN_USER : "LOGGED IN AS USER...\n"
+LOGIN_USER: "LOGGED IN AS USER...\n"
 
-INVALID_INPUT : "INVALID INPUT. PLEASE TRY AGAIN...\n"
+INVALID_INPUT: "INVALID INPUT. PLEASE TRY AGAIN...\n"
 
-USERNAME_ERROR : "USERNAME ALREADY TAKEN. PLEASE ENTER NEW USERNAME...\n"
+USERNAME_ERROR: "USERNAME ALREADY TAKEN. PLEASE ENTER NEW USERNAME...\n"
 
-INVALID_CREDENTIALS : "INVALID CREDENTIALS. PLEASE TRY AGAIN!\n"
+INVALID_CREDENTIALS: "INVALID CREDENTIALS. PLEASE TRY AGAIN!\n"
 
-LATITUDE : "Enter latitutde: "
+LATITUDE: "Enter latitutde: "
 
-LONGITUDE : "Enter longitude: "
+LONGITUDE: "Enter longitude: "
 
-NO_DATA : "No data exists..\n"
+NO_DATA: "No data exists..\n"
 
-ENTER_CITYNAME : "Enter city name: "
+ENTER_CITYNAME: "Enter city name: "
 
-ENTER_DAYS : "Enter number of days: "
+ENTER_DAYS: "Enter number of days: "
 
-ENTER_USERID : "Enter user_id: "
+ENTER_USERID: "Enter user_id: "
 
-FORMAT_DATE_TIME : "%d/%m/%Y %H:%M:%S"
+FORMAT_DATE_TIME: "%d/%m/%Y %H:%M:%S"
 
-ADMIN : 'admin'
+ADMIN: "admin"
 
-LAT : "lat"
+LAT: "lat"
 
-LON : "lon"
+LON: "lon"
 
-CITY : "q"
+CITY: "q"
 
-DAYS : "days"
+DAYS: "days"
 
-QUIT : 'q'
+QUIT: "q"
 
-CITY_INPUT : "city"
+CITY_INPUT: "city"
 
-FIRST : '1'
+FIRST: "1"
 
-SECOND : '2'
+SECOND: "2"
 
-THIRD : '3'
+THIRD: "3"
 
-TABLE_FORMAT : 'rounded_outline'
+TABLE_FORMAT: "rounded_outline"
 
-CITY_NAME : "city name"
+CITY_NAME: "city name"
 
-LAT_LON : "Latitude & Longitude"
+LAT_LON: "Latitude & Longitude"
 
-CURRENT_WEATHER : "current weather"
+CURRENT_WEATHER: "current weather"
 
-FORECAST : "weather forecast"
+FORECAST: "weather forecast"
 
-STRONG_PASSWORD_PROMPT : |
+STRONG_PASSWORD_PROMPT: |
   Your password must contain:
     Min. 8 characters, At least one uppercase letter, One lowercase letter and one number
   New Password:
 
-CITY_REGEX : '^[A-Za-z]{1,28}$'
+CITY_REGEX: "^[A-Za-z]{1,28}$"
 
-ZIPCODE_REGEX : '^\d{6}(?:[-\s]\d{4})?$'
+ZIPCODE_REGEX: '^\d{6}(?:[-\s]\d{4})?$'
 
-PASSWORD_REGEX : '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$'
+PASSWORD_REGEX: '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$'
 
-SIGNUP_PROMPT  : "SIGNED UP SUCCESSFULLY! \n"
+SIGNUP_PROMPT: "SIGNED UP SUCCESSFULLY! \n"
 
-USERNAME_REGEX : "^[A-Za-z0-9]{1,20}"
+USERNAME_REGEX: "^[A-Za-z0-9]{1,20}"

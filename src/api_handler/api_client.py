@@ -5,13 +5,12 @@ import requests
 from dotenv import load_dotenv
 
 load_dotenv()
-
 logger = logging.getLogger(__name__)
 
 
 class ApiClient:
     """
-        Makes api call to get weather data and forecast data
+    Makes api call to get weather data and forecast data
     """
 
     def __init__(self):
@@ -28,12 +27,15 @@ class ApiClient:
 
     def get_data_by_city(self, query_data):
         """
-            Function to get weather data by cityname and latitude longitude
+        Function to get weather data by cityname and latitude longitude
         """
-        logger.debug('Fetching weather data')
+        logger.debug("Fetching weather data")
         querystring = query_data
         response = requests.get(
-            self.url_weather, headers=self.headers_weather, params=querystring, timeout=5
+            self.url_weather,
+            headers=self.headers_weather,
+            params=querystring,
+            timeout=5,
         )
         if response.status_code == 200:
             data = response.json()
@@ -44,12 +46,15 @@ class ApiClient:
 
     def forecast_info(self, query_data):
         """
-            Function to get weather forecast data
+        Function to get weather forecast data
         """
-        logger.debug('Fetching weather forecast data')
+        logger.debug("Fetching weather forecast data")
         querystring = query_data
         response = requests.get(
-            self.url_forecast, headers=self.headers_forecast, params=querystring, timeout=5
+            self.url_forecast,
+            headers=self.headers_forecast,
+            params=querystring,
+            timeout=5,
         )
         data = response.json()
         data = data.get("forecast")
@@ -62,7 +67,7 @@ class ApiClient:
         """
         Private function to get forecast response
         """
-        logger.debug('Running parse_forecast_response')
+        logger.debug("Running parse_forecast_response")
         forecast_data = []
         for data in data.get("forecastday"):
             forecastday_data = []
@@ -74,24 +79,24 @@ class ApiClient:
 
     def __parse_weather_response(self, weather_data, data):
         """
-            Private function to get weather response
+        Private function to get weather response
         """
-        logger.debug('Running parse_weather_response')
+        logger.debug("Running parse_weather_response")
         weather_data.append(data.get("maxtemp_c") or data.get("max_temp"))
         weather_data.append(data.get("mintemp_c") or data.get("min_temp"))
         weather_data.append(data.get("maxwind_mph") or data.get("wind_speed"))
 
     def __parse_astro_data(self, weather_data, data):
         """
-            Private function to get astro data
+        Private function to get astro data
         """
-        logger.debug('Running parse_astro_data')
+        logger.debug("Running parse_astro_data")
         if data.get("max_temp"):
-            timestamp = data['sunrise']
+            timestamp = data["sunrise"]
             datetime_obj = datetime.datetime.fromtimestamp(timestamp)
-            data["sunrise"] = str(datetime_obj.strftime('%H:%M:%S')) + ' A.M.'
-            timestamp = data['sunset']
+            data["sunrise"] = str(datetime_obj.strftime("%H:%M:%S")) + " A.M."
+            timestamp = data["sunset"]
             datetime_obj = datetime.datetime.fromtimestamp(timestamp)
-            data["sunset"] = str(datetime_obj.strftime('%H:%M:%S')) + ' P.M.'
+            data["sunset"] = str(datetime_obj.strftime("%H:%M:%S")) + " P.M."
         weather_data.append(data.get("sunrise"))
         weather_data.append(data.get("sunset"))

@@ -4,7 +4,7 @@ from config.config import Config
 
 class Validator:
     """
-        Validator class
+    Validator class
     """
 
     @staticmethod
@@ -16,7 +16,7 @@ class Validator:
     @staticmethod
     def validate_password(password):
         """
-            Function to validate password
+        Function to validate password
         """
         reg = Config.PASSWORD_REGEX
         return Validator.validate(reg, password)
@@ -24,7 +24,7 @@ class Validator:
     @staticmethod
     def validate_zipcode(zipcode):
         """
-            Function to validate zipcode
+        Function to validate zipcode
         """
         reg = Config.ZIPCODE_REGEX
         return Validator.validate(reg, zipcode)
@@ -32,7 +32,7 @@ class Validator:
     @staticmethod
     def validate_cityname(city):
         """
-            Function to validate cityname
+        Function to validate cityname
         """
         reg = Config.CITY_REGEX
         return Validator.validate(reg, city)
@@ -40,7 +40,7 @@ class Validator:
     @staticmethod
     def validate_username(username):
         """
-            Function to validate username
+        Function to validate username
         """
         reg = Config.USERNAME_REGEX
         return Validator.validate(reg, username)

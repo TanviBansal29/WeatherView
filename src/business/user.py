@@ -16,7 +16,6 @@ class User:
         return data
 
     def fetch_user_by_city(self):
-
         data = db.get_items(Config.QUERY_TO_VIEW_USER_BY_PLACE, (self.city,))
         print(data)
         if not data:

@@ -16,7 +16,7 @@ class Weather:
         if not data:
             raise DataNotFound("No data found")
         return data
-    
+
     def get_weather_by_coordinates(self):
         query_data = {Config.LAT: self.lat, Config.LON: self.lon}
         api = ApiClient()

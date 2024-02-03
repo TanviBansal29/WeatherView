@@ -1,4 +1,3 @@
-from flask import abort
 from flask_jwt_extended import get_jwt, verify_jwt_in_request
 
 
@@ -11,6 +10,11 @@ def access_control(*role):
             if get_role in role:
                 return func(*args, **kwargs)
             else:
-                return {"status_code": 401, "message" : "You are not authorized to access these resource."}
+                return {
+                    "status_code": 401,
+                    "message": "You are not authorized to access these resource.",
+                }
+
         return wrapper
+
     return inner
