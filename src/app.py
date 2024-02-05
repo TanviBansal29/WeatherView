@@ -5,6 +5,7 @@ from flask_jwt_extended import JWTManager
 from flask_smorest import Api
 from config.flask_config import appconfig
 from config.jwt_config import jwt_config
+
 from routes.auth_routes import blp as AuthRoutes
 from routes.forecast_routes import blp as ForecastRoutes
 from routes.user_routes import blp as UserRoutes

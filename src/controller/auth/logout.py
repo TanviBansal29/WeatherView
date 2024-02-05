@@ -1,4 +1,5 @@
 from business.authentication import Authentication
+from helpers import handle_errors
 
 
 class LogoutController:
@@ -10,7 +11,7 @@ class LogoutController:
         self.token_id = token_id
         self.obj_auth_business = Authentication()
 
+    @handle_errors
     def logout(self):
-        self.obj_auth_business.logout(self.token_id)
-        response = {"status_code": 200, "message": "SUCCESSFULLY LOGGED OUT"}
-        return response
+        response = self.obj_auth_business.logout(self.token_id)
+        return self.response.success_response(response)

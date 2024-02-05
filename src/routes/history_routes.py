@@ -1,13 +1,10 @@
-# get history
 from flask import request
 from flask.views import MethodView
-from flask_jwt_extended import get_jwt, jwt_required
+from flask_jwt_extended import get_jwt
 from flask_smorest import Blueprint
 from controller.history.history import HistoryController
-
 from flask_smorest import Blueprint
-
-from helpers.rbac import access_control
+from helpers import access_control
 
 blp = Blueprint(
     "History", __name__, description="Routes for getting user search history"

@@ -2,7 +2,7 @@ from flask import request
 from flask.views import MethodView
 from flask_smorest import Blueprint
 from controller.user.user import UserController
-from helpers.rbac import access_control
+from helpers import access_control
 
 blp = Blueprint("User", __name__, description="Routes for User opeartions")
 

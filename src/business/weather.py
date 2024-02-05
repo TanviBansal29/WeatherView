@@ -1,6 +1,6 @@
 from api_handler.api_client import ApiClient
 from config.config import Config
-from helpers.custom_exceptions import DataNotFound
+from helpers import DataNotFound
 
 
 class Weather:
@@ -31,4 +31,16 @@ class Weather:
         data = api.forecast_info(query_data)
         if not data:
             raise DataNotFound("No data found")
-        return data
+        response = {}
+        forecast_data = []
+        for item in data:
+            response = {
+                "Date": item[0],
+                "Max_temp (°C)": item[1],
+                "Min_temp (°C)": item[2],
+                "Windspeed (m/hr)": item[3],
+                "Sunrise": item[4],
+                "Sunset": item[5],
+            }
+            forecast_data.append(response)
+        return forecast_data

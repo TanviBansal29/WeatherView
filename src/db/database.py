@@ -1,11 +1,10 @@
 import mysql.connector
 import os
-
-# from dotenv import load_dotenv
+import logging
 from config.config import Config
-from helpers.exceptions import DbException
+from helpers import DbException
 
-# load_dotenv()
+logger = logging.getLogger("Database")
 
 
 class Database:
@@ -26,8 +25,8 @@ class Database:
             _id = self.cursor.lastrowid
             self.connection.commit()
 
-        except Exception:
-            raise DbException()
+        except Exception as e:
+            raise DbException(f"Couldn't add data {e}")
 
         return _id
 
@@ -36,8 +35,8 @@ class Database:
             self.cursor.execute(query, data)
             response = self.cursor.fetchone()
 
-        except Exception:
-            raise DbException()
+        except Exception as e:
+            raise DbException(f"Couldn't get data {e}")
 
         return response
 
@@ -47,10 +46,13 @@ class Database:
             response = self.cursor.fetchall()
             self.connection.commit()
 
-        except Exception:
-            raise DbException()
+        except Exception as e:
+            raise DbException(f"Couldn't get data {e}")
 
         return response
 
 
-db = Database()
+try:
+    db = Database()
+except Exception as e:
+    raise DbException(f"Couldn't connect to database {e}")

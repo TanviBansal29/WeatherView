@@ -1,7 +1,7 @@
 from datetime import datetime
 from config.config import Config
 from db.database import db
-from helpers.custom_exceptions import DataNotFound
+from helpers import DataNotFound
 
 
 class History:

@@ -1,5 +1,5 @@
 from business.weather import Weather
-from helpers.custom_exceptions import DataNotFound
+from helpers import handle_errors, ParseResponse
 
 
 class ForecastController:
@@ -9,13 +9,13 @@ class ForecastController:
         self.city = city
         self.days = days
         self.obj_forecast_business = Weather(city_name=self.city)
+        self.response = ParseResponse()
 
+    @handle_errors
     def view_weather_forecast(self):
         """
         Return weather forecast data
         """
-        try:
-            data = self.obj_forecast_business.get_forecast(self.days)
-            return data
-        except DataNotFound as e:
-            return {"status": 404, "message": str(e)}, 404
+
+        response = self.obj_forecast_business.get_forecast(self.days)
+        return self.response.success_response(response)

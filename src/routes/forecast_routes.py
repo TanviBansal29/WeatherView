@@ -1,7 +1,7 @@
 from flask import request
 from flask.views import MethodView
 from flask_smorest import Blueprint
-from helpers.rbac import access_control
+from helpers import access_control
 from controller.forecast.forecast import ForecastController
 
 blp = Blueprint("Forecast", __name__, description="Routes for getting weather forecast")

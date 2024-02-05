@@ -1,7 +1,6 @@
 from config.config import Config
 from db.database import db
-from helpers.custom_exceptions import DataNotFound
-from helpers.table_helper import TableHelper
+from helpers import DataNotFound
 
 
 class User:
@@ -22,7 +21,7 @@ class User:
             raise DataNotFound("No data found")
         return data
 
-    @staticmethod
-    def fetch_all_users():
-        data = db.get_items(Config.QUERY_TO_FETCH_ALL_USERS)
-        TableHelper.print_table(data, type="city")
+    # @staticmethod
+    # def fetch_all_users():
+    #     data = db.get_items(Config.QUERY_TO_FETCH_ALL_USERS)
+    #     TableHelper.print_table(data, type="city")

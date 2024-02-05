@@ -1,4 +1,5 @@
 from business.authentication import Authentication
+from helpers import handle_errors, ParseResponse
 
 
 class RefreshController:
@@ -10,7 +11,9 @@ class RefreshController:
         self.user_id = user_id
         self.role = role
         self.obj_auth_business = Authentication()
+        self.response = ParseResponse()
 
+    @handle_errors
     def refresh(self):
-        new_access_token = self.obj_auth_business.refresh(self.user_id, self.role)
-        return {"access_token": new_access_token}
+        response = self.obj_auth_business.refresh(self.user_id, self.role)
+        return self.response.success_response(response)

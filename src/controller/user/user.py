@@ -1,5 +1,5 @@
 from business.user import User
-from helpers.custom_exceptions import DataNotFound
+from helpers import DataNotFound
 
 
 class UserController:

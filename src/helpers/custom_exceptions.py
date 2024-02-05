@@ -1,14 +1,18 @@
 class InvalidCredentials(Exception):
-    pass
+    status_code = 401
 
 
 class DataAlreadyExists(Exception):
-    pass
+    status_code = 409
 
 
 class DuplicateEntryError(Exception):
-    pass
+    status_code = 409
 
 
 class DataNotFound(Exception):
+    status_code = 404
+
+
+class DbException(Exception):
     pass

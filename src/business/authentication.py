@@ -3,14 +3,12 @@ import hashlib
 import shortuuid
 from db.database import db
 from config.config import Config
-from helpers.blocklist import BLOCKLIST
 from flask_jwt_extended import create_access_token, create_refresh_token
-from helpers.custom_exceptions import (
-    DataAlreadyExists,
-    InvalidCredentials,
-)
 
-logger = logging.getLogger("Logging")
+from helpers import BLOCKLIST, DataAlreadyExists, InvalidCredentials
+
+
+logger = logging.getLogger(__name__)
 
 
 class Authentication:
@@ -45,26 +43,15 @@ class Authentication:
             raise InvalidCredentials("Invalid Credentials")
         return data
 
-    def __fetch_role_and_id(self):
-        """
-        Function to fetch role and user_id
-        """
-        logger.debug("Fetching role and user_id")
-        data = db.get_item(Config.QUERY_TO_FETCH_ROLE, (self.username,))
-        if data:
-            role = data[1]
-            user_id = data[0]
-            return {"role": role, "user_id": user_id}
-
-    def verify_username(self):
+    def username_exists(self):
         """
         Function to verify username
         """
         logger.debug("Verifying username")
         data = db.get_item(Config.QUERY_TO_VERIFY_USERNAME, (self.username,))
         if data:
-            raise DataAlreadyExists("Enter new username")
-        return
+            raise DataAlreadyExists("Username already exists!")
+        return False
 
     def create_account(self):
         """
@@ -78,7 +65,8 @@ class Authentication:
             (user_id, self.username, hashed_password, self.city, self.zipcode),
         )
         logger.info("Sucessfully signed up new user with %s.", self.username)
-        return _id
+        response = {"message": "SIGNED IN SUCCESSFULLY!"}
+        return response
 
     def generate_token(self, role, user_id):
         "Method to generate access token and refresh token"
@@ -102,9 +90,23 @@ class Authentication:
         new_access_token = create_access_token(
             identity=user_id, fresh=False, additional_claims={"role": role}
         )
-        return new_access_token
+        response = {"access_token": new_access_token}
+        return response
 
     def logout(self, token_id):
         """Method to logout an authenticated user"""
 
         BLOCKLIST.add(token_id)
+
+        response = {"message": "LOGGED OUT SUCCESSFULLY!"}
+        return response
+
+    def __fetch_role_and_id(self):
+        """
+        Function to fetch role and user_id
+        """
+        logger.debug("Fetching role and user_id")
+        data = db.get_item(Config.QUERY_TO_FETCH_ROLE, (self.username,))
+        role = data[1]
+        user_id = data[0]
+        return {"role": role, "user_id": user_id}
