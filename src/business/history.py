@@ -1,7 +1,10 @@
 from datetime import datetime
+import logging
 from config.config import Config
 from db.database import db
 from helpers import DataNotFound
+
+logger = logging.getLogger(__name__)
 
 
 class History:
@@ -17,15 +20,31 @@ class History:
         """
         Function to view user history
         """
+
+        logger.info("Viewing history")
+
         data = db.get_items(Config.QUERY_TO_VIEW_HISTORY, (self.user_id,))
         if not data:
-            raise DataNotFound("No data found")
-        return data
+            raise DataNotFound(Config.NO_DATA)
+        response = {}
+        history_data = []
+        for item in data:
+            response = {
+                "Date_time": item[0],
+                "Searched_for": item[1],
+                "Searched_by": item[2],
+                "City_name": item[3],
+            }
+            history_data.append(response)
+        return history_data
 
     def insert_history(self):
         """
         Function to insert history
         """
+
+        logger.info("Inserting history")
+
         tm = datetime.now()
         date_time = tm.strftime(Config.FORMAT_DATE_TIME)
         searched_by = Config.CITY_NAME

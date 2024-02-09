@@ -3,6 +3,8 @@ from config.config import Config
 
 
 class LoginSchema(Schema):
+    """Login schema with username and password"""
+
     username = fields.Str(
         required=True, validate=validate.Regexp(Config.USERNAME_REGEX)
     )
@@ -10,12 +12,21 @@ class LoginSchema(Schema):
 
 
 class LoginSuccessSchema(Schema):
+    """
+    If succesfully logged in then response schema having -
+        access_token, refresh_token and message
+    """
+
     access_token = fields.Str(dump_only=True)
     refresh_token = fields.Str(dump_only=True)
     message = fields.Str(dump_only=True)
 
 
 class UserRegisterSchema(Schema):
+    """
+    Schema for new user registration
+    """
+
     username = fields.Str(
         required=True, validate=validate.Regexp(Config.USERNAME_REGEX)
     )

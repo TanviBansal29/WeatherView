@@ -48,3 +48,6 @@ def jwt_config(jwt):
             ),
             401,
         )
+
+    # @jwt.token_in_blocklist_loader
+    # def check_if_token_in_blocklist(jwt_header, jwt_payload):

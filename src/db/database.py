@@ -47,7 +47,7 @@ class Database:
             self.connection.commit()
 
         except Exception as e:
-            raise DbException(f"Couldn't get data {e}")
+            raise DbException(f"Couldn't get data(many) {e}")
 
         return response
 

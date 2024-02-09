@@ -9,6 +9,7 @@ class HistoryController:
         self.user_id = user_id
         self.city = city
         self.obj_history_business = History(self.user_id, city=self.city)
+        self.response = ParseResponse()
 
     @handle_errors
     def view_user_history(self):
@@ -16,5 +17,5 @@ class HistoryController:
         Returns user search history
         """
 
-        data = self.obj_history_business.view_history()
-        return data
+        response = self.obj_history_business.view_history()
+        return self.response.success_response(response)

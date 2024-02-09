@@ -1,5 +1,5 @@
 from business.weather import Weather
-from helpers import DataNotFound
+from helpers import ParseResponse, handle_errors
 
 
 class WeatherController:
@@ -12,23 +12,22 @@ class WeatherController:
         self.obj_forecast_business = Weather(
             city_name=self.city, lat=self.lat, lon=self.lon
         )
+        self.response = ParseResponse()
 
+    @handle_errors
     def view_current_weather_by_place(self):
         """
         Return current weather information by place name
         """
-        try:
-            data = self.obj_forecast_business.get_weather_by_city()
-            return data
-        except DataNotFound as e:
-            return {"status": 404, "message": str(e)}, 404
 
+        data = self.obj_forecast_business.get_weather_by_city()
+        return self.response.success_response(data)
+
+    @handle_errors
     def view_current_weather_by_coordinates(self):
         """
         Return current weather information by place name
         """
-        try:
-            data = self.obj_forecast_business.get_weather_by_coordinates()
-            return data
-        except DataNotFound as e:
-            return {"status": 404, "message": str(e)}, 404
+
+        data = self.obj_forecast_business.get_weather_by_coordinates()
+        return self.response.success_response(data)

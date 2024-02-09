@@ -1,5 +1,5 @@
 from business.user import User
-from helpers import DataNotFound
+from helpers import ParseResponse, handle_errors
 
 
 class UserController:
@@ -9,21 +9,20 @@ class UserController:
         self.username = username
         self.city = city
         self.obj_user_business = User(username=self.username, city=self.city)
+        self.response = ParseResponse()
 
+    @handle_errors
     def view_user_data(self):
         """Returns user data"""
-        try:
-            data = self.obj_user_business.fetch_user_data()
-            return data
-        except DataNotFound as e:
-            return {"status": 404, "message": str(e)}, 404
 
+        data = self.obj_user_business.fetch_user_data()
+        return self.response.success_response(data)
+
+    @handle_errors
     def view_users(self):
         """
         Return list of uses with specified place name
         """
-        try:
-            data = self.obj_user_business.fetch_user_by_city()
-            return data
-        except DataNotFound as e:
-            return {"status": 404, "message": str(e)}, 404
+
+        data = self.obj_user_business.fetch_user_by_city()
+        return self.response.success_response(data)

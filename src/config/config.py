@@ -57,6 +57,11 @@ class Config:
     USER_PROMPTS = None
     ADMIN_PROMPTS = None
     USER_VIEW_PROMPTS = None
+    ROLE_ADMIN = None
+    ROLE_USER = None
+    NO_DATA = None
+    INVALID_CREDENTIALS = None
+    DATA_ALREADY_EXISTS = None
 
     @classmethod
     def load_print_statements(cls):
@@ -101,6 +106,8 @@ class Config:
             cls.PASSWORD_REGEX = data["PASSWORD_REGEX"]
             cls.SIGNUP_PROMPT = data["SIGNUP_PROMPT"]
             cls.USERNAME_REGEX = data["USERNAME_REGEX"]
+            cls.ROLE_ADMIN = data["ROLE_ADMIN"]
+            cls.ROLE_USER = data["ROLE_USER"]
 
     @classmethod
     def load_queries(cls):
@@ -129,7 +136,32 @@ class Config:
             cls.ADMIN_PROMPTS = data["ADMIN_PROMPTS"]
             cls.USER_VIEW_PROMPTS = data["USER_VIEW_PROMPTS"]
 
+    @classmethod
+    def load_error_message(cls):
+        with open("config\\error_message.yml", "r") as f:
+            data = yaml.safe_load(f)
+            cls.NO_DATA = data["NO_DATA"]
+            cls.INVALID_CREDENTIALS = data["INVALID_CREDENTIALS"]
+            cls.DATA_ALREADY_EXISTS = data["DATA_ALREADY_EXISTS"]
+
+    @classmethod
+    def load_log_message(cls):
+        with open("config\\log_message.yml", "r") as f:
+            data = yaml.safe_load(f)
+            cls.START_APP = data["START_APP"]
+            cls.END_APP = data["END_APP"]
+            cls.LOGGED_IN = data["LOGGED_IN"]
+            cls.VERIFY_USERNAME = data["VERIFY_USERNAME"]
+            cls.CREATE_ACCOUNT = data["CREATE_ACCOUNT"]
+            cls.GENERATE_TOKENS = data["GENERATE_TOKENS"]
+            cls.REFRESH_INITIATE = data["REFRESH_INITIATE"]
+            cls.NEW_TOKEN = data["NEW_TOKEN"]
+            cls.LOGOUT_INITIATE = data["LOGOUT_INITIATE"]
+            cls.FETCH_ROLE_ID = data["FETCH_ROLE_ID"]
+
 
 Config.load_print_statements()
 Config.load_queries()
 Config.load_prompts()
+Config.load_error_message()
+Config.load_log_message()

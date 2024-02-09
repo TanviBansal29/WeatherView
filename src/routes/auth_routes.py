@@ -1,6 +1,7 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint
 from flask_jwt_extended import get_jwt, jwt_required
+from config.constants import AUTHORIZATION_HEADER
 from schemas.schemas import LoginSchema, UserRegisterSchema
 from controller.auth.login import LoginController
 from controller.auth.register import RegisterController
@@ -39,6 +40,7 @@ class Logout(MethodView):
     "Route to logout user"
 
     @jwt_required()
+    @blp.doc(parameters=[AUTHORIZATION_HEADER])
     def post(self):
         "Logout a logged in user"
         jti = get_jwt().get("jti")
@@ -51,8 +53,10 @@ class Refresh(MethodView):
     "Route to get a non fresh access token"
 
     @jwt_required(refresh=True)
+    @blp.doc(parameters=[AUTHORIZATION_HEADER])
     def post(self):
         "Getting a non fresh access token from refresh token"
+
         claims = get_jwt()
         user_id = claims.get("sub")
         role = claims.get("role")

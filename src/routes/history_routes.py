@@ -2,6 +2,8 @@ from flask import request
 from flask.views import MethodView
 from flask_jwt_extended import get_jwt
 from flask_smorest import Blueprint
+from config.config import Config
+from config.constants import AUTHORIZATION_HEADER
 from controller.history.history import HistoryController
 from flask_smorest import Blueprint
 from helpers import access_control
@@ -15,7 +17,8 @@ blp = Blueprint(
 class UserHistory(MethodView):
     "Route to get user search history"
 
-    @access_control("admin")
+    @access_control(Config.ROLE_ADMIN)
+    @blp.doc(parameters=[AUTHORIZATION_HEADER])
     def get(self):
         """
         Get user search history by user id
@@ -29,7 +32,8 @@ class UserHistory(MethodView):
 class UserHistoryMe(MethodView):
     "Route to get logged in user search history"
 
-    @access_control("user")
+    @access_control(Config.ROLE_USER)
+    @blp.doc(parameters=[AUTHORIZATION_HEADER])
     def get(self):
         """
         Get own search history

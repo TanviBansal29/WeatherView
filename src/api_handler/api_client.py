@@ -29,6 +29,7 @@ class ApiClient:
         """
         Function to get weather data by cityname and latitude longitude
         """
+
         logger.debug("Fetching weather data")
         querystring = query_data
         response = requests.get(
@@ -48,6 +49,7 @@ class ApiClient:
         """
         Function to get weather forecast data
         """
+
         logger.debug("Fetching weather forecast data")
         querystring = query_data
         response = requests.get(
@@ -67,6 +69,7 @@ class ApiClient:
         """
         Private function to get forecast response
         """
+
         logger.debug("Running parse_forecast_response")
         forecast_data = []
         for data in data.get("forecastday"):
@@ -90,6 +93,7 @@ class ApiClient:
         """
         Private function to get astro data
         """
+        
         logger.debug("Running parse_astro_data")
         if data.get("max_temp"):
             timestamp = data["sunrise"]

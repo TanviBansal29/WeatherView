@@ -1,6 +1,8 @@
 from flask import request
 from flask.views import MethodView
 from flask_smorest import Blueprint
+from config.config import Config
+from config.constants import AUTHORIZATION_HEADER
 from helpers import access_control
 from controller.weather.weather import WeatherController
 
@@ -11,7 +13,8 @@ blp = Blueprint("Weather", __name__, description="Routes for getting current wea
 class CurrentWeatherPlace(MethodView):
     "Route to get current weather"
 
-    @access_control("user")
+    @access_control(Config.ROLE_USER)
+    @blp.doc(parameters=[AUTHORIZATION_HEADER])
     def get(self):
         """
         Get current weather information by place name
@@ -25,7 +28,8 @@ class CurrentWeatherPlace(MethodView):
 class CurrentWeatherCoordinates(MethodView):
     "Route to get current weather"
 
-    @access_control("user")
+    @access_control(Config.ROLE_USER)
+    @blp.doc(parameters=[AUTHORIZATION_HEADER])
     def get(self):
         """
         Get current weather information by place name
