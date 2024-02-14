@@ -1,0 +1,1336 @@
+{
+	"info": {
+		"_postman_id": "0188df74-49c0-4675-ac10-6eb17c176c41",
+		"name": "WeatherView",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32176731"
+	},
+	"item": [
+		{
+			"name": "User endpoints",
+			"item": [
+				{
+					"name": "login (User)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();\r",
+									"if (response.access_token) {\r",
+									"    pm.collectionVariables.set(\"useraccessToken\", response.access_token);\r",
+									"} else {\r",
+									"    console.error(\"Access token not found in the response body.\");\r",
+									"}\r",
+									"\r",
+									"pm.test(\"Login response has success message\", () => {\r",
+									"    pm.expect(response.message).to.eql(\"LOGGED IN SUCCESSFULLY\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is of type string\", () => {\r",
+									"    pm.expect(response.message).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Login response has access token\", () => {\r",
+									"    pm.expect(pm.response.text()).to.include(\"access_token\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Login response has refresh token\", () => {\r",
+									"    pm.expect(pm.response.text()).to.include(\"refresh_token\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Login response has success message\", () => {\r",
+									"    pm.expect(pm.response.text()).to.include(\"message\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"// const response = pm.response.json();\r",
+									" \r",
+									"// //testing status code\r",
+									"// pm.test(\"Status code is 200\", () => {\r",
+									"//     pm.response.to.have.status(200);\r",
+									"// });\r",
+									" \r",
+									"// //testing response body is array\r",
+									"// pm.test(\"Response is an array\", () => {\r",
+									"//     pm.expect(response).to.be.an('array');\r",
+									"// });\r",
+									" \r",
+									"// pm.test(\"Response is of type string\", () => {\r",
+									"//     pm.expect(response[0].name).to.be.a('string');\r",
+									"// });\r",
+									" \r",
+									"// pm.test(\"Response Body is correct\", () => {\r",
+									"//     pm.expect(response[0].closed).to.be.false;\r",
+									"// });\r",
+									" \r",
+									"// //testing that response have property or not\r",
+									"// pm.test(\"Response Body have property\", () => {\r",
+									"//     pm.expect(response[0]).to.haveOwnProperty('id');\r",
+									"// });\r",
+									" \r",
+									"// //setting collection variable\r",
+									"// pm.collectionVariables.set('boardId',response[0].id)\r",
+									" \r",
+									"// //getting collection variable\r",
+									"// console.log(pm.collectionVariables.get('boardId'))\r",
+									" \r",
+									"// //strict and loose equality\r",
+									"// let tempVariable = response[0].limits.attachments.perBoard\r",
+									" \r",
+									"// console.log(tempVariable.disableAt == '36000')\r",
+									"// console.log(tempVariable.disableAt === '36000')\r",
+									" \r",
+									"// //for loop statements\r",
+									"// for(let i=0;i<response.length;i++){\r",
+									"//     console.log(response[i].id)\r",
+									"// }\r",
+									" \r",
+									"// let demoId = response[0].id\r",
+									" \r",
+									" \r",
+									"// pm.test(\"Status is ok id is present\", () =>{\r",
+									"//     if(demoId){\r",
+									"//         pm.expect(tempVariable.status).to.be.eql(\"ok\")\r",
+									"//     }\r",
+									" \r",
+									"// });\r",
+									" \r",
+									"// console.log(\"Using foreach\")\r",
+									" \r",
+									"// response.forEach((item) =>{\r",
+									"//     console.log(item.id)\r",
+									"// }\r",
+									"// )\r",
+									" \r",
+									"// console.log(pm.environment.name)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.clear();"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Tanvibansal\",\r\n    \"password\": \"Tanvibansal12@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View own search history",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an array\", () => {\r",
+									"    pm.expect(response).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"// //testing that response have property or not\r",
+									"pm.test(\"Response Body have property Date_time\", () => {\r",
+									"    pm.expect(response[0]).to.haveOwnProperty('Date_time');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is of type string\", () => {\r",
+									"    pm.expect(response[0].City_name).to.be.a('string');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{useraccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/history/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"history",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forecast",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response is an array\", () => {\r",
+									"    pm.expect(response).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"// //testing that response have property or not\r",
+									"pm.test(\"Response Body have property date\", () => {\r",
+									"    pm.expect(response[0]).to.haveOwnProperty('Date');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body have property max_temp\", () => {\r",
+									"    pm.expect(response[0]).to.haveOwnProperty('Max_temp (°C)');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body have property min_temp\", () => {\r",
+									"    pm.expect(response[0]).to.haveOwnProperty('Min_temp (°C)');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body have property windspeed\", () => {\r",
+									"    pm.expect(response[0]).to.haveOwnProperty('Windspeed (m/hr)');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body have property sunrise\", () => {\r",
+									"    pm.expect(response[0]).to.haveOwnProperty('Sunrise');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body have property sunset\", () => {\r",
+									"    pm.expect(response[0]).to.haveOwnProperty('Sunset');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.clear()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{useraccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/forecast?city=noida&days=3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"forecast"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "noida"
+								},
+								{
+									"key": "days",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "current_weather_place",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response is an object\", () => {\r",
+									"    pm.expect(response).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body have property max_temp\", () => {\r",
+									"    pm.expect(response).to.haveOwnProperty('Max_temp (°C)');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body have property min_temp\", () => {\r",
+									"    pm.expect(response).to.haveOwnProperty('Min_temp (°C)');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body have property windspeed\", () => {\r",
+									"    pm.expect(response).to.haveOwnProperty('windspeed (m/hr)');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body have property sunrise\", () => {\r",
+									"    pm.expect(response).to.haveOwnProperty('sunrise');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response Body have property sunset\", () => {\r",
+									"    pm.expect(response).to.haveOwnProperty('sunset');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{useraccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/weather/place?placename=noida",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"weather",
+								"place"
+							],
+							"query": [
+								{
+									"key": "placename",
+									"value": "noida"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "current_weather_coordinates",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()\r",
+									"\r",
+									"pm.test(\"Response is an object\", () => {\r",
+									"    pm.expect(response).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body have property max_temp\", () => {\r",
+									"    pm.expect(response).to.haveOwnProperty('Max_temp (°C)');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body have property min_temp\", () => {\r",
+									"    pm.expect(response).to.haveOwnProperty('Min_temp (°C)');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body have property windspeed\", () => {\r",
+									"    pm.expect(response).to.haveOwnProperty('Windspeed (m/hr)');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body have property sunrise\", () => {\r",
+									"    pm.expect(response).to.haveOwnProperty('Sunrise');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response Body have property sunset\", () => {\r",
+									"    pm.expect(response).to.haveOwnProperty('Sunset');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.clear()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{useraccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/weather/coordinates?lat=68.5058888&lon=77.4444797",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"weather",
+								"coordinates"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "68.5058888"
+								},
+								{
+									"key": "lon",
+									"value": "77.4444797"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{useraccessToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Admin endpoints",
+			"item": [
+				{
+					"name": "login (Admin)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"\r",
+									"pm.collectionVariables.set(\"adminaccessToken\", response.access_token);\r",
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is of type string\", () => {\r",
+									"    pm.expect(response.message).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Login response has access token\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"access_token\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Login response has refresh token\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"refresh_token\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Login response has success message\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"message\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.clear();"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"adminadmin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view user history",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()\r",
+									"\r",
+									"pm.test(\"Status code is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an array\", () => {\r",
+									"    pm.expect(response).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"// //testing that response have property or not\r",
+									"pm.test(\"Response Body have property Date_time\", () => {\r",
+									"    pm.expect(response[0]).to.haveOwnProperty('Date_time');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is of type string\", () => {\r",
+									"    pm.expect(response[0].City_name).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body have property\", () => {\r",
+									"    pm.expect(response[0]).to.haveOwnProperty('Searched_for');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body have property\", () => {\r",
+									"    pm.expect(response[0]).to.haveOwnProperty('Searched_by');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body have property\", () => {\r",
+									"    pm.expect(response[0]).to.haveOwnProperty('City_name');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminaccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/history?user_id=6AVX3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"history"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "6AVX3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserDetail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response is an object\", () => {\r",
+									"    pm.expect(response).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response Body have property username\", () => {\r",
+									"    pm.expect(response).to.haveOwnProperty('username');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body have property city\", () => {\r",
+									"    pm.expect(response).to.haveOwnProperty('city');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response Body have property zipcode\", () => {\r",
+									"    pm.expect(response).to.haveOwnProperty('zipcode');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminaccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/{{username}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"{{username}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UsersList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () =>{\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('At least one user detail in list', () => {\r",
+									"\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response).to.be.an('array');\r",
+									"    pm.expect(response.length).to.be.above(0);\r",
+									"\r",
+									"    pm.expect(response[1]).to.haveOwnProperty('username');\r",
+									"\r",
+									"\r",
+									"    console.log(response[1].username);\r",
+									"    pm.collectionVariables.set('username', response[1].username);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.clear()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminaccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users?place=noida",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "place",
+									"value": "noida"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()\r",
+									"\r",
+									"pm.test(\"Status code is 201\", () =>{\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body have property\", () => {\r",
+									"    pm.expect(response).to.haveOwnProperty('message');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminaccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"{{$randomFirstName}}\",\r\n    \"password\": \"{{$randomFirstName}}12@\",\r\n    \"city\": \"noida\",\r\n    \"zipcode\": \"201305\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"register"
+							],
+							"query": [
+								{
+									"key": "hehe",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{adminaccessToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Invalid input for query param",
+			"item": [
+				{
+					"name": "current_weather_place",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()\r",
+									"\r",
+									"// //testing that response have property or not\r",
+									"pm.test(\"Response Body have property\", () => {\r",
+									"    pm.expect(response).to.haveOwnProperty('message');\r",
+									"    pm.expect(response).to.haveOwnProperty('status_code');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{useraccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/weather/place?placename=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"weather",
+								"place"
+							],
+							"query": [
+								{
+									"key": "placename",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{useraccessToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Status code is 404', () => {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Error message\", () => {",
+							"    const response = pm.response.json();",
+							"    console.log(response.message)",
+							"    pm.expect(response.message).to.have.string('No')",
+							"});"
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Missing Authentication",
+			"item": [
+				{
+					"name": "Missing Header",
+					"item": [
+						{
+							"name": "UserDetail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Response Body have property\", () => {\r",
+											"    pm.expect(response).to.haveOwnProperty('description');\r",
+											"    pm.expect(response).to.haveOwnProperty('error');\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer qwqwqw",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/users/tanvibansal",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"tanvibansal"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "noauth"
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"console.clear()"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.test('Status code is 401', () => {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Error message\", () => {",
+									"    pm.expect(response.error).to.eql(\"authorization_required\")",
+									"})",
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Invalid Token",
+					"item": [
+						{
+							"name": "UserDetail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json()\r",
+											"\r",
+											"pm.test(\"Response Body have property\", () => {\r",
+											"    pm.expect(response).to.haveOwnProperty('message');\r",
+											"    pm.expect(response).to.haveOwnProperty('error');\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+										"key": "Authorization",
+										"value": "Bearer qwqwqw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/users/tanvibansal",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"tanvibansal"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"console.clear()"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.test('Status code is 401', () => {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"Error message\", () => {",
+									"    pm.expect(response.error).to.eql(\"invalid_token\")",
+									"})"
+								]
+							}
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "refresh",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () =>{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcwNzA0NDM5MywianRpIjoiYjkzMjgyNDAtMmQ5YS00ZGFhLTlhZTYtYzY1MTRlNmFkYzU0IiwidHlwZSI6InJlZnJlc2giLCJzdWIiOiJBeWQyOFBjIiwibmJmIjoxNzA3MDQ0MzkzLCJjc3JmIjoiNTc1YWY0MmUtMTE4NC00ZmZjLTg3YzQtZDM3MTQ3MmNjNmZkIiwiZXhwIjoxNzA5NjM2MzkzLCJyb2xlIjoiYWRtaW4ifQ.Z9YQi6J0BfPsqTxg2W0a-aQbuhnrm8ljzMkn4bbeap8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/refresh",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () =>{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNzA3MDQzNTAwLCJqdGkiOiIwY2E5MWVlZS00MTdkLTQwNjEtOTBmYi0xMDg0YmY1ODhmNWQiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoiQXlkMjhQYyIsIm5iZiI6MTcwNzA0MzUwMCwiY3NyZiI6ImZlNWRmOWE3LTk5NjgtNDI2Yy04NmExLTdmOTkyNjc3NWZlZCIsImV4cCI6MTcwNzA0NDQwMCwicm9sZSI6ImFkbWluIn0.VHNzKW5AWYmr4rREHMk8nYgxZW7lA_VJFlAmyu10LjE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/logout",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"console.clear()"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://127.0.0.1:5000/weather-view",
+			"type": "string"
+		},
+		{
+			"key": "accessToken",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNzA3NzE4NDA3LCJqdGkiOiJmZmUzMzljNS0yYjQ5LTRlYjMtYTQwOC02OWJkN2EyYmVlOGEiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoiQXlkMjhQYyIsIm5iZiI6MTcwNzcxODQwNywiY3NyZiI6ImYzZmNmZDRhLTc0OTMtNDRlYS1iYTFkLWY3ZWY0MWU5YWI2NiIsImV4cCI6MTcwNzcxOTMwNywicm9sZSI6ImFkbWluIn0.hc3m5gpGla8_C9CvOnb45dPsH7O-ldqUz-OoMHf3r7c"
+		},
+		{
+			"key": "username",
+			"value": "hahahahhah"
+		},
+		{
+			"key": "useraccessToken",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNzA3NzY2ODM5LCJqdGkiOiJiYzNiMWE3My1jMzViLTRkYWYtYjA0My1kYmQ2MjFkYzgzN2IiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoiNkFWWDMiLCJuYmYiOjE3MDc3NjY4MzksImNzcmYiOiJmMDFjNWI5Yy1jMTljLTRiMDktYTI4YS1iZWE3ZGFjMjVhYzYiLCJleHAiOjE3MDc3Njc3MzksInJvbGUiOiJ1c2VyIn0.OBlCLfrLMss8EzCklcXdSU6eF_kI1r-sGMt0CGmXuss"
+		},
+		{
+			"key": "adminaccessToken",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNzA3NzY3ODYwLCJqdGkiOiJkYWQ0MWM3Yi0wN2QzLTQ1NTktODRmMi0wYzVlMzJkMDFiZDAiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoiQXlkMjhQYyIsIm5iZiI6MTcwNzc2Nzg2MCwiY3NyZiI6IjQyNmIxMjlmLTQ3NzgtNDcxYy04ZmVkLTA1N2U4N2RiOTVlNCIsImV4cCI6MTcwNzc2ODc2MCwicm9sZSI6ImFkbWluIn0.rQHHWaU9A4oTx-tA9m7zA5jaIYm26FfVCZ80t10dkS4"
+		}
+	]
+}

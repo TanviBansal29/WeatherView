@@ -6,6 +6,14 @@ class InvalidCredentials(Exception):
     status_code = 401
 
 
+class Unauthorized(Exception):
+    """
+    Exception raised when user not authorized for particular resource
+    """
+
+    status_code = 401
+
+
 class DataAlreadyExists(Exception):
     """
     Exception raised if data already exists in the database

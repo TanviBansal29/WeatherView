@@ -6,6 +6,7 @@ from helpers.custom_exceptions import (
     DuplicateEntryError,
     DataNotFound,
     DbException,
+    Unauthorized,
 )
 from helpers.rbac import access_control
 from helpers.validations import Validator
