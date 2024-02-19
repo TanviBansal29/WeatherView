@@ -5,7 +5,7 @@ QUERY_TO_CREATE_USERS_TABLE: |
   password VARCHAR(100),
   city VARCHAR(100),
   zipcode INTEGER,
-  role VARCHAR(100) DEFAULT "user",
+  role VARCHAR(100) DEFAULT 'user',
   PRIMARY KEY(user_id)
   )
 
@@ -19,13 +19,6 @@ QUERY_TO_CREATE_SEARCH_HISTORY_TABLE: |
   city VARCHAR(100),
   FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
   )
-
-# QUERY_TO_CREATE_TOKEN_TABLE: |
-#   CREATE TABLE IF NOT EXISTS tokens (
-#   user_id VARCHAR(100),
-
-
-#   )
 
 QUERY_TO_INSERT_SEARCH_HISTORY: INSERT INTO search_history (user_id, searched_for, searched_by, date_time, city) VALUES (%s ,%s ,%s, %s ,%s)
 QUERY_TO_VERIFY_USERNAME: SELECT username FROM users WHERE username = %s
