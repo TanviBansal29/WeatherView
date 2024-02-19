@@ -16,6 +16,8 @@ mysql-connector-python = "*"
 flask = "*"
 flask-jwt-extended = "*"
 flask-smorest = "*"
+pymysql = "*"
+cryptography = "*"
 
 [dev-packages]
 
