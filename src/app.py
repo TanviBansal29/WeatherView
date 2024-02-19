@@ -26,12 +26,13 @@ logger = logging.getLogger(__name__)
 
 
 def create_admin():
-    password = "adminadmin"
+    password = "tanvitanvi"
     hashed_password = hashlib.sha256(password.encode()).hexdigest()
+    print(hashed_password)
     try:
         db.add_item(
             Config.QUERY_TO_CREATE_ADMIN,
-            ("AD1234", "admin", hashed_password, "noida", 201305, "admin"),
+            ("AD1234", "tanvi", hashed_password, "noida", 201305, "admin"),
         )
     except DbException as e:
         logger.exception(str(e))
