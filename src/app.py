@@ -9,6 +9,7 @@ from config.jwt_config import jwt_config
 import shortuuid
 from config.register_blueprints import register_blueprints
 from db.database import db
+from helpers.custom_exceptions import DbException
 
 
 load_dotenv()
@@ -29,7 +30,7 @@ def create_admin():
             Config.QUERY_TO_CREATE_ADMIN,
             ("AD1234", "admin", "adminadmin", "noida", 201305, "admin"),
         )
-    except pymysql.Error as e:
+    except DbException as e:
         logger.exception(str(e))
 
 
