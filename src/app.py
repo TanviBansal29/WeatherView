@@ -38,3 +38,6 @@ def create_app():
 
     logger.info(Config.END_APP)
     return app
+
+
+flask_app = create_app()
