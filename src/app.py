@@ -12,7 +12,7 @@ from config.register_blueprints import register_blueprints
 load_dotenv()
 logging.getLogger().handlers = []
 logging.basicConfig(
-    format="%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] [request_id: %(request_id)s] %(message)s",
+    format="%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s",
     datefmt="%d-%M-%Y %H:%M:%S",
     level=logging.DEBUG,
     filename="logs.log",
@@ -30,11 +30,11 @@ def create_app():
     jwt_config(jwt)
     register_blueprints(app)
 
-    @app.before_request
-    def pre_request_handler():
-        """Adds request id to logs"""
-        request_id = shortuuid.ShortUUID().random(length=6)
-        request.request_id = request_id
+    # @app.before_request
+    # def pre_request_handler():
+    #     """Adds request id to logs"""
+    #     request_id = shortuuid.ShortUUID().random(length=6)
+    #     request.request_id = request_id
 
     logger.info(Config.END_APP)
     return app
