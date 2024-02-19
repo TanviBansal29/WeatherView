@@ -1,3 +1,4 @@
+import hashlib
 import logging
 from dotenv import load_dotenv
 from flask import Flask, request
@@ -25,10 +26,12 @@ logger = logging.getLogger(__name__)
 
 
 def create_admin():
+    password = "adminadmin"
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
     try:
         db.add_item(
             Config.QUERY_TO_CREATE_ADMIN,
-            ("AD1234", "admin", "adminadmin", "noida", 201305, "admin"),
+            ("AD1234", "admin", hashed_password, "noida", 201305, "admin"),
         )
     except DbException as e:
         logger.exception(str(e))
