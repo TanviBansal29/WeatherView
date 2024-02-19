@@ -4,6 +4,7 @@ import shortuuid
 from db.database import db
 from config.config import Config
 from flask_jwt_extended import create_access_token, create_refresh_token
+from flask import request
 
 from helpers import BLOCKLIST, DataAlreadyExists, InvalidCredentials
 
@@ -117,7 +118,9 @@ class Authentication:
         """
         Function to fetch role and user_id
         """
+
         logger.debug(Config.FETCH_ROLE_ID)
+
         data = db.get_item(Config.QUERY_TO_FETCH_ROLE, (self.username,))
         role = data[1]
         user_id = data[0]

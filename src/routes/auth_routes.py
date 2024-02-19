@@ -1,3 +1,5 @@
+import logging
+from flask import request
 from flask.views import MethodView
 from flask_smorest import Blueprint
 from flask_jwt_extended import get_jwt, jwt_required
@@ -20,6 +22,7 @@ class Login(MethodView):
     @blp.arguments(LoginSchema)
     def post(self, login_data):
         "Login an existing user"
+        # global request_id
         login_obj = LoginController(login_data)
         return login_obj.login()
 
