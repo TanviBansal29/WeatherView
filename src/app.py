@@ -2,6 +2,7 @@ import logging
 from dotenv import load_dotenv
 from flask import Flask, request
 from flask_jwt_extended import JWTManager
+import pymysql
 from config.config import Config
 from config.flask_config import appconfig
 from config.jwt_config import jwt_config
@@ -23,10 +24,13 @@ logger = logging.getLogger(__name__)
 
 
 def create_admin():
-    db.add_item(
-        Config.QUERY_TO_CREATE_ADMIN,
-        ("AD1234", "admin", "adminadmin", "noida", 201305, "admin"),
-    )
+    try:
+        db.add_item(
+            Config.QUERY_TO_CREATE_ADMIN,
+            ("AD1234", "admin", "adminadmin", "noida", 201305, "admin"),
+        )
+    except pymysql.Error as e:
+        logger.exception(str(e))
 
 
 def create_app():
