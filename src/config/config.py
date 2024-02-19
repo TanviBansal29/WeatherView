@@ -1,4 +1,14 @@
+import os
 import yaml
+
+path_current_directory = os.path.dirname(__file__)
+PS_CONFIG_PATH = os.path.join(path_current_directory, "print_statements.yml")
+
+C_PROMPTS_PATH = os.path.join(path_current_directory, "prompts.yml.yml")
+
+Q_CONFIG_PATH = os.path.join(path_current_directory, "queries.yml")
+Q_ERRORS_PATH = os.path.join(path_current_directory, "error_message.yml")
+Q_LOGS_PATH = os.path.join(path_current_directory, "log_message.yml")
 
 
 class Config:
@@ -65,7 +75,7 @@ class Config:
 
     @classmethod
     def load_print_statements(cls):
-        with open("config\\print_statements.yml", "r") as f:
+        with open(PS_CONFIG_PATH, "r") as f:
             data = yaml.safe_load(f)
             cls.WELCOME_MESSAGE = data["WELCOME_MESSAGE"]
             cls.ENTER_USERNAME = data["ENTER_USERNAME"]
@@ -111,7 +121,7 @@ class Config:
 
     @classmethod
     def load_queries(cls):
-        with open("config\\queries.yml", "r") as f:
+        with open(Q_CONFIG_PATH, "r") as f:
             data = yaml.safe_load(f)
             cls.QUERY_TO_CREATE_USERS_TABLE = data["QUERY_TO_CREATE_USERS_TABLE"]
             cls.QUERY_TO_VERIFY_USERNAME = data["QUERY_TO_VERIFY_USERNAME"]
@@ -129,7 +139,7 @@ class Config:
 
     @classmethod
     def load_prompts(cls):
-        with open("config\\prompts.yml", "r") as f:
+        with open(C_PROMPTS_PATH, "r") as f:
             data = yaml.safe_load(f)
             cls.MENU_PROMPTS = data["MENU_PROMPTS"]
             cls.USER_PROMPTS = data["USER_PROMPTS"]
@@ -138,7 +148,7 @@ class Config:
 
     @classmethod
     def load_error_message(cls):
-        with open("config\\error_message.yml", "r") as f:
+        with open(Q_ERRORS_PATH, "r") as f:
             data = yaml.safe_load(f)
             cls.NO_DATA = data["NO_DATA"]
             cls.INVALID_CREDENTIALS = data["INVALID_CREDENTIALS"]
@@ -146,7 +156,7 @@ class Config:
 
     @classmethod
     def load_log_message(cls):
-        with open("config\\log_message.yml", "r") as f:
+        with open(Q_LOGS_PATH, "r") as f:
             data = yaml.safe_load(f)
             cls.START_APP = data["START_APP"]
             cls.END_APP = data["END_APP"]
