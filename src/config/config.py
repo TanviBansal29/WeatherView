@@ -4,7 +4,7 @@ import yaml
 path_current_directory = os.path.dirname(__file__)
 PS_CONFIG_PATH = os.path.join(path_current_directory, "print_statements.yml")
 
-C_PROMPTS_PATH = os.path.join(path_current_directory, "prompts.yml.yml")
+C_PROMPTS_PATH = os.path.join(path_current_directory, "prompts.yml")
 
 Q_CONFIG_PATH = os.path.join(path_current_directory, "queries.yml")
 Q_ERRORS_PATH = os.path.join(path_current_directory, "error_message.yml")
