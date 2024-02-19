@@ -14,7 +14,7 @@ class Database:
             charset="utf8mb4",
             connect_timeout=timeout,
             cursorclass=pymysql.cursors.DictCursor,
-            db="defaultdb",
+            db="weatherAppDB",
             host="mysql-1adcb7fa-bansaltanvi2404-b909.a.aivencloud.com",
             password="AVNS_969BhvbhbIu9KWqHfDk",
             read_timeout=timeout,
