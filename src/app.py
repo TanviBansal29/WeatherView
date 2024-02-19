@@ -28,7 +28,6 @@ logger = logging.getLogger(__name__)
 def create_admin():
     password = "tanvitanvi"
     hashed_password = hashlib.sha256(password.encode()).hexdigest()
-    print(hashed_password)
     try:
         db.add_item(
             Config.QUERY_TO_CREATE_ADMIN,

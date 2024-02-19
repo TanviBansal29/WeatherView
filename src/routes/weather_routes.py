@@ -1,5 +1,6 @@
 from flask import request
 from flask.views import MethodView
+from flask_jwt_extended import get_jwt
 from flask_smorest import Blueprint
 from config.config import Config
 from config.constants import AUTHORIZATION_HEADER
@@ -19,8 +20,10 @@ class CurrentWeatherPlace(MethodView):
         """
         Get current weather information by place name
         """
+        claims = get_jwt()
+        user_id = claims.get("sub")
         city = request.args.get("placename")
-        weather_obj = WeatherController(city)
+        weather_obj = WeatherController(user_id, city=city)
         return weather_obj.view_current_weather_by_place()
 
 
@@ -34,7 +37,9 @@ class CurrentWeatherCoordinates(MethodView):
         """
         Get current weather information by place name
         """
+        claims = get_jwt()
+        user_id = claims.get("sub")
         lat = request.args.get("lat")
         lon = request.args.get("lon")
-        weather_obj = WeatherController(lat=lat, lon=lon)
+        weather_obj = WeatherController(user_id, lat=lat, lon=lon)
         return weather_obj.view_current_weather_by_coordinates()

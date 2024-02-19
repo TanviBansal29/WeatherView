@@ -5,12 +5,13 @@ from helpers import ParseResponse, handle_errors
 class WeatherController:
     "Weather Controller containing methods to view current weather information"
 
-    def __init__(self, city=None, lat=None, lon=None):
+    def __init__(self, user_id, city=None, lat=None, lon=None):
+        self.user_id = user_id
         self.city = city
         self.lat = lat
         self.lon = lon
         self.obj_forecast_business = Weather(
-            city_name=self.city, lat=self.lat, lon=self.lon
+            self.user_id, city_name=self.city, lat=self.lat, lon=self.lon
         )
         self.response = ParseResponse()
 

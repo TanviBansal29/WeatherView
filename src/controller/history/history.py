@@ -8,7 +8,7 @@ class HistoryController:
     def __init__(self, user_id, city=None):
         self.user_id = user_id
         self.city = city
-        self.obj_history_business = History(self.user_id, city=self.city)
+        self.obj_history_business = History(self.user_id)
         self.response = ParseResponse()
 
     @handle_errors
