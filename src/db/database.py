@@ -1,5 +1,5 @@
-import mysql.connector
 import os
+import pymysql
 import logging
 from config.config import Config
 from helpers import DbException
@@ -9,11 +9,18 @@ logger = logging.getLogger("Database")
 
 class Database:
     def __init__(self):
-        self.connection = mysql.connector.connect(
-            user=os.getenv("DB_USERNAME"),
-            password=os.getenv("DB_PASSWORD"),
-            host=os.getenv("DB_HOST"),
-            database=os.getenv("DB_NAME"),
+        timeout = 10
+        self.connection = pymysql.connect(
+            charset="utf8mb4",
+            connect_timeout=timeout,
+            cursorclass=pymysql.cursors.DictCursor,
+            db="defaultdb",
+            host="mysql-1adcb7fa-bansaltanvi2404-b909.a.aivencloud.com",
+            password="AVNS_969BhvbhbIu9KWqHfDk",
+            read_timeout=timeout,
+            port=17131,
+            user="avnadmin",
+            write_timeout=timeout,
         )
         self.cursor = self.connection.cursor()
         self.cursor.execute(Config.QUERY_TO_CREATE_USERS_TABLE)
