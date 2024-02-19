@@ -16,7 +16,6 @@ class LoginController:
     @handle_errors
     def login(self):
         """Method for user login"""
-
         if self.obj_auth_business.verify_user():
             data = self.obj_auth_business.get_role()
             role = data.get("role")

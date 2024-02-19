@@ -20,7 +20,11 @@ class User:
         if not data:
             raise DataNotFound(Config.NO_DATA)
         print(data)
-        response = {"username": data[0][0], "city": data[0][1], "zipcode": data[0][2]}
+        response = {
+            "username": data[0]["username"],
+            "city": data[0]["city"],
+            "zipcode": data[0]["zipcode"],
+        }
         return response
 
     def fetch_user_by_city(self):
@@ -34,10 +38,10 @@ class User:
         user_data = []
         for item in data:
             response = {
-                "user_id": item[0],
-                "username": item[1],
-                "city": item[2],
-                "zipcode": item[3],
+                "user_id": item["user_id"],
+                "username": item["username"],
+                "city": item["city"],
+                "zipcode": item["zipcode"],
             }
             user_data.append(response)
         return user_data

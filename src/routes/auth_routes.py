@@ -22,7 +22,6 @@ class Login(MethodView):
     @blp.arguments(LoginSchema)
     def post(self, login_data):
         "Login an existing user"
-        # global request_id
         login_obj = LoginController(login_data)
         return login_obj.login()
 

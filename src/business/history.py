@@ -30,10 +30,10 @@ class History:
         history_data = []
         for item in data:
             response = {
-                "Date_time": item[0],
-                "Searched_for": item[1],
-                "Searched_by": item[2],
-                "City_name": item[3],
+                "Date_time": item["date_time"],
+                "Searched_for": item["searched_for"],
+                "Searched_by": item["searched_by"],
+                "City_name": item["city"],
             }
             history_data.append(response)
         return history_data

@@ -122,6 +122,6 @@ class Authentication:
         logger.debug(Config.FETCH_ROLE_ID)
 
         data = db.get_item(Config.QUERY_TO_FETCH_ROLE, (self.username,))
-        role = data[1]
-        user_id = data[0]
+        role = data["role"]
+        user_id = data["user_id"]
         return {"role": role, "user_id": user_id}
