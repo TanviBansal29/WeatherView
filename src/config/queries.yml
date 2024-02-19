@@ -30,3 +30,4 @@ QUERY_TO_VIEW_USER: SELECT username, city, zipcode FROM users WHERE username = %
 QUERY_TO_VIEW_USER_BY_PLACE: SELECT user_id, username, city, zipcode FROM users WHERE city = %s
 QUERY_TO_VIEW_HISTORY: SELECT date_time, searched_for, searched_by, city FROM search_history WHERE user_id = %s
 QUERY_TO_FETCH_ALL_USERS: SELECT user_id, username, city, zipcode from users
+QUERY_TO_CREATE_ADMIN: INSERT INTO users (user_id, username, password, city, zipcode, role) VALUES (%s, %s, %s, %s, %s, %s)

@@ -72,6 +72,7 @@ class Config:
     NO_DATA = None
     INVALID_CREDENTIALS = None
     DATA_ALREADY_EXISTS = None
+    QUERY_TO_CREATE_ADMIN = None
 
     @classmethod
     def load_print_statements(cls):
@@ -136,6 +137,7 @@ class Config:
             cls.QUERY_TO_VIEW_USER_BY_PLACE = data["QUERY_TO_VIEW_USER_BY_PLACE"]
             cls.QUERY_TO_VIEW_HISTORY = data["QUERY_TO_VIEW_HISTORY"]
             cls.QUERY_TO_FETCH_ALL_USERS = data["QUERY_TO_FETCH_ALL_USERS"]
+            cls.QUERY_TO_CREATE_ADMIN = data["QUERY_TO_CREATE_ADMIN"]
 
     @classmethod
     def load_prompts(cls):
